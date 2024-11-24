@@ -32,6 +32,7 @@ class VerifyPinsForm extends StatelessWidget {
                 prefixIcon: Icon(Iconsax.direct_right),
                 labelText: TTexts.pin1,
               ),
+              keyboardType: TextInputType.number,
             ),
             const Gap(TSizes.spaceBtwInputFields),
 
@@ -41,29 +42,11 @@ class VerifyPinsForm extends StatelessWidget {
                 prefixIcon: Icon(Iconsax.direct_right),
                 labelText: TTexts.pin2,
               ),
+              keyboardType: TextInputType.number,
             ),
             const Gap(TSizes.spaceBtwInputFields / 2),
 
-            //* remember me
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                //* remember me
-                Row(
-                  children: [
-                    Obx(
-                      () => Checkbox(
-                        value: controller.rememberMe.value,
-                        onChanged: (value) => controller.rememberMe.value =
-                            !controller.rememberMe.value,
-                      ),
-                    ),
-                    const Text(TTexts.rememberMe),
-                  ],
-                ),
-              ],
-            ),
-            const Gap(TSizes.spaceBtwSections),
+            
 
             //* sign in button
             SizedBox(

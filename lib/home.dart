@@ -19,8 +19,8 @@ class HomeScreen extends StatelessWidget {
             child: SizedBox(
               width: double.infinity, //? to make the sized button full width
               child: OutlinedButton(
-                onPressed: () {
-                  controller.getCurrentLocation();
+                onPressed: () async {
+                  controller.testLocation();
                 },
                 child: const Text('Test Location'),
               ),

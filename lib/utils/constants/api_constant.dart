@@ -6,4 +6,6 @@ class APIConstants {
   static const String registration = '${url}auth/register';
   static const String verifyCredentials = '${url}auth/validate-credentials';
   static const String verifyPins = '${url}auth/validate-pins';
+  static const String verifyLocation = '${url}auth/validate-location';
+  static const String logout = '${url}auth/logout';
 }

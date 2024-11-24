@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:security_app/home.dart';
 import 'bindings/general_bindings.dart';
+import 'features/authentication/views/login/login.dart';
 import 'utils/theme/theme.dart';
 
 class App extends StatelessWidget {
@@ -16,7 +16,7 @@ class App extends StatelessWidget {
       darkTheme: TAppTheme.darkTheme,
       //? when the app runs, it will automatically initiate all the methods in GeneralBindings
       initialBinding: GeneralBindings(),
-      home: const HomeScreen(),
+      home: const LoginScreen(),
     );
   }
 }

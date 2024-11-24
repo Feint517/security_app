@@ -27,6 +27,7 @@ dependencies:
   jwt_decoder: ^2.0.1
   path_provider: ^2.1.5
   geolocator: ^13.0.2
+  geocoding: ^3.0.0
 
   cupertino_icons: ^1.0.8
 

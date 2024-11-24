@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:security_app/data/repositories/authentication_repository.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/validators/validators.dart';
@@ -61,24 +62,24 @@ class LoginForm extends StatelessWidget {
             const Gap(TSizes.spaceBtwInputFields / 2),
 
             //* remember me and forgot password
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     //* remember me
-            //     Row(
-            //       children: [
-            //         Obx(
-            //           () => Checkbox(
-            //             value: controller.rememberMe.value,
-            //             onChanged: (value) => controller.rememberMe.value =
-            //                 !controller.rememberMe.value,
-            //           ),
-            //         ),
-            //         const Text(TTexts.rememberMe),
-            //       ],
-            //     ),
-            //   ],
-            // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //* remember me
+                Row(
+                  children: [
+                    Obx(
+                      () => Checkbox(
+                        value: controller.rememberMe.value,
+                        onChanged: (value) => controller.rememberMe.value =
+                            !controller.rememberMe.value,
+                      ),
+                    ),
+                    const Text(TTexts.rememberMe),
+                  ],
+                ),
+              ],
+            ),
             const Gap(TSizes.spaceBtwSections),
 
             //* sign in button
@@ -99,7 +100,6 @@ class LoginForm extends StatelessWidget {
                 child: const Text(TTexts.createAccount),
               ),
             ),
-            const Gap(TSizes.spaceBtwItems),
           ],
         ),
       ),

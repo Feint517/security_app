@@ -63,32 +63,6 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  // Future<void> loginWithEmailAndPassword(
-  //   String email,
-  //   String password,
-  // ) async {
-  //   final body = {"email": email, "password": password};
-  //   try {
-  //     final response = await http.post(
-  //       Uri.parse(APIConstants.login),
-  //       body: jsonEncode(body),
-  //       headers: {
-  //         "Content-Type": "application/json", //? Set the content type to JSON
-  //       },
-  //     );
-  //     if (response.statusCode == 201) {
-  //       final json = jsonDecode(response.body);
-  //       print(json);
-  //       ///*Handle success
-  //     } else {
-  //       print('Failed with status: ${response.statusCode}');
-  //       print('Response body: ${response.body}');
-  //     }
-  //   } catch (e) {
-  //     throw ('Something went wrong, please try again');
-  //   }
-  // }
-
   Future<(int status, dynamic response)> verifyCredentials(
     String email,
     String password,
@@ -103,7 +77,7 @@ class AuthenticationRepository extends GetxController {
         },
       );
       final json = jsonDecode(response.body);
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         print(json);
         return (response.statusCode, json as dynamic);
       } else {
@@ -131,7 +105,7 @@ class AuthenticationRepository extends GetxController {
         },
       );
       final json = jsonDecode(response.body);
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         print(json);
         return (response.statusCode, json as dynamic);
       } else {
@@ -144,7 +118,46 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  verifyLocation() {
+  Future<(int status, dynamic response)> verifyLocation({
+    String? latitude,
+    String? longitude,
+  }) async {
+    final body = {"latitude": latitude, "longitude": longitude};
+    try {
+      final response = await http.post(
+        Uri.parse(APIConstants.verifyLocation),
+        body: jsonEncode(body),
+        headers: {
+          "Content-Type": "application/json", //? Set the content type to JSON
+        },
+      );
+      final json = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        print(json);
+        return (response.statusCode, json as dynamic);
+      } else {
+        print('Failed with status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        return (response.statusCode, json as dynamic);
+      }
+    } catch (e) {
+      throw ('Something went wrong, please try again');
+    }
+  }
 
+  Future<void> logout(String refreshToken) async {
+    final body = {"refreshToken": refreshToken};
+    try {
+      final response = await http.post(
+        Uri.parse(APIConstants.logout),
+        body: jsonEncode(body),
+        headers: {
+          "Content-Type": "application/json", //? Set the content type to JSON
+        },
+      );
+      final json = jsonDecode(response.body);
+    } catch (e) {
+      throw ('Something went wrong, please try again');
+    }
   }
 }

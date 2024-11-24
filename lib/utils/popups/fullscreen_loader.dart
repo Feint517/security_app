@@ -15,7 +15,7 @@ class CustomFullscreenLoader {
         canPop: false,
         child: Container(
           color: THelperFunctions.isDarkMode(Get.context!)
-              ? TColors.dark
+              ? TColors.black
               : TColors.white,
           width: double.infinity,
           height: double.infinity,
