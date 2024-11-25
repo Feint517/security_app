@@ -19,50 +19,42 @@ class VerifyPinsForm extends StatelessWidget {
     final controller = Get.put(VerifyPinsController());
     return Form(
       key: controller.verifyPinsFormKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: TSizes.spaceBtwSections,
-        ),
-        child: Column(
-          children: [
-            //* Pins
-            TextFormField(
-              controller: controller.pin1,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Iconsax.direct_right),
-                labelText: TTexts.pin1,
-              ),
-              keyboardType: TextInputType.number,
+      child: Column(
+        children: [
+          //* Pins
+          TextFormField(
+            controller: controller.pin1,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Iconsax.direct_right),
+              labelText: TTexts.pin1,
             ),
-            const Gap(TSizes.spaceBtwInputFields),
+            keyboardType: TextInputType.number,
+          ),
+          const Gap(TSizes.spaceBtwInputFields),
 
-            TextFormField(
-              controller: controller.pin2,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Iconsax.direct_right),
-                labelText: TTexts.pin2,
-              ),
-              keyboardType: TextInputType.number,
+          TextFormField(
+            controller: controller.pin2,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Iconsax.direct_right),
+              labelText: TTexts.pin2,
             ),
-            const Gap(TSizes.spaceBtwInputFields / 2),
+            keyboardType: TextInputType.number,
+          ),
+          const Gap(TSizes.spaceBtwInputFields),
 
-            
-
-            //* sign in button
-            SizedBox(
-              width: double.infinity, //? to make the sized button full width
-              child: ElevatedButton(
-                onPressed: () => controller.verifyPins(
-                  userId,
-                  controller.pin1.text,
-                  controller.pin2.text,
-                ),
-                child: const Text(TTexts.signIn),
+          //* sign in button
+          SizedBox(
+            width: double.infinity, //? to make the sized button full width
+            child: ElevatedButton(
+              onPressed: () => controller.verifyPins(
+                userId,
+                controller.pin1.text,
+                controller.pin2.text,
               ),
+              child: const Text(TTexts.signIn),
             ),
-            const Gap(TSizes.spaceBtwItems),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

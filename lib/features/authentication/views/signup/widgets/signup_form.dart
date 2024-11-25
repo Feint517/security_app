@@ -107,15 +107,6 @@ class SignupForm extends StatelessWidget {
             ),
           ),
           const Gap(TSizes.spaceBtwInputFields),
-
-          //* testing
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () => controller.signupTest(),
-              child: const Text('Test'),
-            ),
-          ),
         ],
       ),
     );

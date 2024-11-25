@@ -54,6 +54,7 @@ class TTexts {
       "Congratulations! Your account awaits, please verify your email to start using it";
 
   static const String sayContinue = "Continue";
+  static const String enterPins = "Please enter the PIN codes related to your account:";
 
   //* success screen
   static const String yourAccountCreatedTitle =
