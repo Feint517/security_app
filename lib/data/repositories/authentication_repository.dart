@@ -3,9 +3,12 @@ import 'dart:convert';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:security_app/features/posting/views/home.dart';
 import 'package:security_app/utils/constants/api_constant.dart';
 import '../../features/authentication/views/login/login.dart';
 import 'package:http/http.dart' as http;
+
+import '../services/secure_storage.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
@@ -17,12 +20,14 @@ class AuthenticationRepository extends GetxController {
   @override
   void onReady() {
     FlutterNativeSplash.remove(); //? remove the native splash screen
-    //screenRedirect(); //? redirect to the appropriate screen
+    screenRedirect(); //? redirect to the appropriate screen
   }
 
   void screenRedirect() async {
-    deviceStorage.writeIfNull('isUserExist', false);
-    if (deviceStorage.read('isUserExist') != true) {
+    final loggedInState = await isLoggedIn();
+    if (loggedInState) {
+      Get.offAll(() => const HomeScreen());
+    } else {
       Get.offAll(() => const LoginScreen());
     }
   }
@@ -145,7 +150,7 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  Future<void> logout(String refreshToken) async {
+  Future<(int status, dynamic response)> logout(String refreshToken) async {
     final body = {"refreshToken": refreshToken};
     try {
       final response = await http.post(
@@ -156,8 +161,64 @@ class AuthenticationRepository extends GetxController {
         },
       );
       final json = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        print(json);
+        return (response.statusCode, json as dynamic);
+      } else {
+        print('Failed with status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        return (response.statusCode, json as dynamic);
+      }
     } catch (e) {
       throw ('Something went wrong, please try again');
+    }
+  }
+
+  Future<void> verifyRefreshToken() async {}
+
+  //* check if the user is currently logged in
+  Future<bool> isLoggedIn() async {
+    final accessToken = await SecureStorage.getAccessToken();
+    return accessToken != null;
+  }
+
+  // void checkLoginState() async {
+  //   bool loggedIn = await isLoggedIn();
+
+  //   if (loggedIn) {
+  //     //* Navigate to the home screen
+  //
+  //   } else {
+  //     //* Navigate to the login screen
+  //
+  //   }
+  // }
+
+  Future<void> refreshToken() async {
+    final refreshToken = await SecureStorage.getRefreshToken();
+
+    try {
+      final response = await http.post(
+        Uri.parse(APIConstants.refresh),
+        body: jsonEncode({"refreshToken": refreshToken}),
+        headers: {"Content-Type": "application/json"},
+      );
+
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body);
+        final newAccessToken = json['accessToken'];
+        final newRefreshToken = json['refreshToken'];
+
+        //* Save new tokens
+        await SecureStorage.saveTokens(newAccessToken, newRefreshToken);
+      } else {
+        throw Exception('Failed to refresh token');
+      }
+    } catch (e) {
+      print('Error refreshing token: $e');
+      //* Optionally log out the user if refresh fails
+      await SecureStorage.clearTokens();
+      Get.offAll(() => const LoginScreen());
     }
   }
 }

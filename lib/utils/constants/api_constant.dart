@@ -8,4 +8,6 @@ class APIConstants {
   static const String verifyPins = '${url}auth/validate-pins';
   static const String verifyLocation = '${url}auth/validate-location';
   static const String logout = '${url}auth/logout';
+  static const String protectedEndpoint = '';
+  static const String refresh= '';
 }

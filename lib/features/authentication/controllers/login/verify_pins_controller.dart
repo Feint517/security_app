@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:security_app/features/authentication/controllers/login/login_controller.dart';
 import '../../../../common/styles/loaders.dart';
 import '../../../../data/repositories/authentication_repository.dart';
+import '../../../../data/services/secure_storage.dart';
 import '../../../../utils/constants/animations.dart';
 import '../../../../utils/popups/fullscreen_loader.dart';
 
@@ -47,21 +48,29 @@ class VerifyPinsController extends GetxController {
       }
 
       //* save user credentials
+      // if (LoginController.instance.rememberMe.value) {
+      //   localStorage.write('REMEMBER_ME_EMAIL', LoginController.instance.email.text.trim());
+      //   localStorage.write('REMEMBER_ME_PASSWORD', LoginController.instance.password.text.trim());
+      //   localStorage.write('REMEMBER_ME_USERID', userId);
+      //   localStorage.write('REMEMBER_ME_ACCESS_TOKEN', json['accessToken']);
+      //   localStorage.write('REMEMBER_ME_REFRESH_TOKEN', json['refreshToken']);
+      // }
+      // if (kDebugMode) {
+      //   print(localStorage.read('REMEMBER_ME_EMAIL'));
+      //   print(localStorage.read('REMEMBER_ME_PASSWORD'));
+      //   print(localStorage.read('REMEMBER_ME_USERID'));
+      //   print(localStorage.read('REMEMBER_ME_ACCESS_TOKEN'));
+      //   print(localStorage.read('REMEMBER_ME_REFRESH_TOKEN'));
+      // }
+      //* save tokens to local storage
       if (LoginController.instance.rememberMe.value) {
-        localStorage.write('REMEMBER_ME_EMAIL', LoginController.instance.email.text.trim());
-        localStorage.write('REMEMBER_ME_PASSWORD', LoginController.instance.password.text.trim());
-        localStorage.write('REMEMBER_ME_USERID', userId);
-        localStorage.write('REMEMBER_ME_ACCESS_TOKEN', json['accessToken']);
-        localStorage.write('REMEMBER_ME_REFRESH_TOKEN', json['refreshToken']);
-      }
-      if (kDebugMode) {
-        print(localStorage.read('REMEMBER_ME_EMAIL'));
-        print(localStorage.read('REMEMBER_ME_PASSWORD'));
-        print(localStorage.read('REMEMBER_ME_USERID'));
-        print(localStorage.read('REMEMBER_ME_ACCESS_TOKEN'));
-        print(localStorage.read('REMEMBER_ME_REFRESH_TOKEN'));
+        await SecureStorage.saveTokens(
+          json['accessToken'],
+          json['refreshToken'],
+        );
       }
       CustomLoaders.successSnackBar(title: 'Hooray');
+      AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
       //* remove the loader
       CustomFullscreenLoader.stopLoading();

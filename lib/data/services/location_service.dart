@@ -48,12 +48,12 @@ class LocationService extends GetxController {
     return position;
   }
 
-  void testLocation() async {
-    try {
-      Position position = await getCurrentLocation();
-      print('Latitude: ${position.latitude}, Longitude: ${position.longitude}');
-    } catch (e) {
-      print('Error: $e');
-    }
-  }
+  // void testLocation() async {
+  //   try {
+  //     Position position = await getCurrentLocation();
+  //     print('Latitude: ${position.latitude}, Longitude: ${position.longitude}');
+  //   } catch (e) {
+  //     print('Error: $e');
+  //   }
+  // }
 }
