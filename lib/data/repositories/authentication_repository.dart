@@ -174,7 +174,29 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  Future<void> verifyRefreshToken() async {}
+  Future<bool> verifyRefreshToken(String refreshToken) async {
+    final body = {"refreshToken": refreshToken};
+    try {
+      final response = await http.post(
+        Uri.parse(APIConstants.verifyRefreshToken),
+        body: jsonEncode(body),
+        headers: {
+          "Content-Type": "application/json", //? Set the content type to JSON
+        },
+      );
+      final json = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        print(json);
+        return true;
+      } else {
+        print('Failed with status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        return false;
+      }
+    } catch (e) {
+      throw ('Something went wrong, please try again');
+    }
+  }
 
   //* check if the user is currently logged in
   Future<bool> isLoggedIn() async {
@@ -182,24 +204,12 @@ class AuthenticationRepository extends GetxController {
     return accessToken != null;
   }
 
-  // void checkLoginState() async {
-  //   bool loggedIn = await isLoggedIn();
-
-  //   if (loggedIn) {
-  //     //* Navigate to the home screen
-  //
-  //   } else {
-  //     //* Navigate to the login screen
-  //
-  //   }
-  // }
-
-  Future<void> refreshToken() async {
+  Future<void> refreshTokens() async {
     final refreshToken = await SecureStorage.getRefreshToken();
 
     try {
       final response = await http.post(
-        Uri.parse(APIConstants.refresh),
+        Uri.parse(APIConstants.refreshTokens),
         body: jsonEncode({"refreshToken": refreshToken}),
         headers: {"Content-Type": "application/json"},
       );

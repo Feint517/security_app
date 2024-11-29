@@ -6,7 +6,9 @@ import '../services/secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class UserRepository extends GetxController {
-  Future<void> fetchData() async {
+  static UserRepository get instance => Get.find();
+
+  Future<void> fetchUserData() async {
     final accessToken = await SecureStorage.getAccessToken();
 
     try {
