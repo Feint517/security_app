@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../utils/constants/colors.dart';
 import '../curved_edges/curved_edges_widgets.dart';
 import 'circular_container.dart';
@@ -8,15 +7,17 @@ class CustomPrimaryHeaderContainer extends StatelessWidget {
   const CustomPrimaryHeaderContainer({
     super.key,
     required this.child,
+    required this.height,
   });
 
   final Widget child;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return CurvedEdgesWidget(
       child: Container(
-        // height: 400,   //! this is not the right solution
+        height: height,   //! this is not the right solution
         color: TColors.primary,
         padding: const EdgeInsets.all(0),
         child: Stack(

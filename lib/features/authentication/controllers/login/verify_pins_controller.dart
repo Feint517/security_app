@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:security_app/features/authentication/controllers/login/login_controller.dart';
 import '../../../../common/styles/loaders.dart';
 import '../../../../data/repositories/authentication_repository.dart';
@@ -11,7 +10,7 @@ import '../../../../utils/popups/fullscreen_loader.dart';
 
 class VerifyPinsController extends GetxController {
   //* variables
-  final localStorage = GetStorage();
+  //final localStorage = GetStorage();
   final pin1 = TextEditingController();
   final pin2 = TextEditingController();
   GlobalKey<FormState> verifyPinsFormKey = GlobalKey<FormState>();
@@ -52,7 +51,7 @@ class VerifyPinsController extends GetxController {
           json['refreshToken'],
         );
       }
-      CustomLoaders.successSnackBar(title: 'Hooray');
+      CustomLoaders.successSnackBar(title: 'Hooray', message: 'Welcome Back');
       AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
       //* remove the loader

@@ -40,49 +40,64 @@ class LoginController extends GetxController {
         return;
       }
 
+      //* check if location services are enabled
+      try {
+        await LocationService.instance.checkIsEnabled();
+      } catch (e) {
+        CustomLoaders.errorSnackBar(
+          title: 'Enable location services!',
+          message: 'Your location is required to login.',
+        );
+        CustomFullscreenLoader.stopLoading();
+        return;
+      }
+
       final position = await LocationService.instance.getCurrentLocation();
 
-      //* verify user credentials
-      final response1 = await AuthenticationRepository.instance
-          .verifyCredentials(email.text.trim(), password.text.trim());
-      final status1 = response1.$1;
-      final json1 = response1.$2;
-
       //* verify user location
-      final response2 = await AuthenticationRepository.instance.verifyLocation(
+      final response1 = await AuthenticationRepository.instance.verifyLocation(
         latitude: position.latitude.toString(),
         longitude: position.longitude.toString(),
       );
+      final status1 = response1.$1;
+      final json1 = response1.$2;
+
+      if (status1 != 200) {
+        final error = json1['error'];
+        CustomFullscreenLoader.stopLoading();
+        CustomLoaders.errorSnackBar(
+          title: 'Oh snap!',
+          message: error['message'],
+        );
+        return;
+      }
+
+      //* verify user credentials
+      final response2 = await AuthenticationRepository.instance
+          .verifyCredentials(email.text.trim(), password.text.trim());
       final status2 = response2.$1;
       final json2 = response2.$2;
 
-      if (status1 != 200) {
-        CustomFullscreenLoader.stopLoading();
-        CustomLoaders.errorSnackBar(
-          title: 'Oh snap!',
-          message: json1['message'],
-        );
-        return;
-      }
       if (status2 != 200) {
+        final error = json2['error'];
         CustomFullscreenLoader.stopLoading();
         CustomLoaders.errorSnackBar(
           title: 'Oh snap!',
-          message: json2['message'],
+          message: error['message'],
         );
         return;
       }
+      CustomLoaders.successSnackBar(
+        title: 'Hooray',
+        message: json2['message'],
+      );
 
       CustomFullscreenLoader.stopLoading();
       Get.to(
         () => VerifyPinsScreen(
-          userId: json1['userId'],
+          userId: json2['userId'],
         ),
       );
-
-
-      //* redirect
-      //AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
       //* remove the loader
       CustomFullscreenLoader.stopLoading();

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:security_app/features/posting/views/home.dart';
+import 'package:security_app/navigation_menu.dart';
 import 'package:security_app/utils/constants/api_constant.dart';
 import '../../features/authentication/views/login/login.dart';
 import 'package:http/http.dart' as http;
@@ -26,7 +26,7 @@ class AuthenticationRepository extends GetxController {
   void screenRedirect() async {
     final loggedInState = await isLoggedIn();
     if (loggedInState) {
-      Get.offAll(() => const HomeScreen());
+      Get.offAll(() => const NavigationMenu());
     } else {
       Get.offAll(() => const LoginScreen());
     }
@@ -52,6 +52,11 @@ class AuthenticationRepository extends GetxController {
         body: jsonEncode(body),
         headers: {
           "Content-Type": "application/json", //? Set the content type to JSON
+        },
+      ).timeout(
+        const Duration(seconds: 10),
+        onTimeout: () {
+          throw Exception('Connection timed out. Please try again.');
         },
       );
       if (response.statusCode == 201) {
@@ -83,7 +88,7 @@ class AuthenticationRepository extends GetxController {
       );
       final json = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        print(json);
+        print('json = $json');
         return (response.statusCode, json as dynamic);
       } else {
         print('Failed with status: ${response.statusCode}');
@@ -163,6 +168,8 @@ class AuthenticationRepository extends GetxController {
       final json = jsonDecode(response.body);
       if (response.statusCode == 200) {
         print(json);
+        Get.offAll(() => const LoginScreen());
+        SecureStorage.clearTokens();
         return (response.statusCode, json as dynamic);
       } else {
         print('Failed with status: ${response.statusCode}');

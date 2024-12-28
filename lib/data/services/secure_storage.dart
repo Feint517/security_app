@@ -1,6 +1,8 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 
 class SecureStorage {
+  static SecureStorage get instance => Get.find();
   static const _storage = FlutterSecureStorage();
 
   static Future<void> saveTokens(String accessToken, String refreshToken) async {

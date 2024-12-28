@@ -1,7 +1,10 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:security_app/testing_controller.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/validators/validators.dart';
@@ -16,6 +19,7 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
+    final testingController = Get.put(TestingController());
     return Form(
       key: controller.loginFormKey,
       child: Padding(
@@ -97,6 +101,20 @@ class LoginForm extends StatelessWidget {
               child: OutlinedButton(
                 onPressed: () => Get.to(() => const SignupScreen()),
                 child: const Text(TTexts.createAccount),
+              ),
+            ),
+            const Gap(TSizes.spaceBtwItems),
+            //* testing
+            SizedBox(
+              width: double.infinity, //? to make the sized button full width
+              child: OutlinedButton(
+                onPressed: () async {
+                  testingController.checkUserCredentials(
+                    controller.email.text,
+                    controller.password.text,
+                  );
+                },
+                child: const Text('Test'),
               ),
             ),
           ],

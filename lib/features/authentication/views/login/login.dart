@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:security_app/features/authentication/views/login/widgets/login_form.dart';
-
 import '../../../../common/styles/spacing_styles.dart';
 
 class LoginScreen extends StatelessWidget {

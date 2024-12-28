@@ -5,24 +5,21 @@ import 'package:get/get.dart';
 
 class LocationService extends GetxController {
   static LocationService get instance => Get.find();
-
   @override
   void onReady() {
-    //getCurrentLocation();
+    getLocationPermission();
   }
 
-  Future<Position> getCurrentLocation() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    print('Location Service is called');
-
-    //* Check if location services are enabled
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  //* Check if location services are enabled
+  Future<void> checkIsEnabled() async {
+    final serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       return Future.error('Location services are disabled.');
     }
+  }
 
+  Future<void> getLocationPermission() async {
+    LocationPermission permission;
     //* Check for location permissions
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
@@ -38,22 +35,19 @@ class LocationService extends GetxController {
       print('Permission denied forever.');
       return Future.error('Location permissions are permanently denied.');
     }
+  }
+
+  Future<Position> getCurrentLocation() async {
+    //* Check for location permissions
+    getLocationPermission();
 
     //* Get the current position
     print('Getting current position...');
     Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
+      locationSettings: AndroidSettings(accuracy: LocationAccuracy.best),
+      //desiredAccuracy: LocationAccuracy.high,
     );
     print('Position obtained: $position');
     return position;
   }
-
-  // void testLocation() async {
-  //   try {
-  //     Position position = await getCurrentLocation();
-  //     print('Latitude: ${position.latitude}, Longitude: ${position.longitude}');
-  //   } catch (e) {
-  //     print('Error: $e');
-  //   }
-  // }
 }

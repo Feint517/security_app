@@ -24,7 +24,7 @@ class UserRepository extends GetxController {
         print('Data fetched successfully');
       } else if (response.statusCode == 401) {
         print('Access token expired');
-        //await refreshToken(); ///* Call refresh token logic
+        //await refreshToken(); //* Call refresh token logic
       } else {
         throw Exception('Failed to fetch data');
       }
