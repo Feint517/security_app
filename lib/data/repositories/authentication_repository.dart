@@ -37,6 +37,7 @@ class AuthenticationRepository extends GetxController {
     String lastName,
     String username,
     String email,
+    String phoneNumber,
     String password,
   ) async {
     final body = {
@@ -44,6 +45,7 @@ class AuthenticationRepository extends GetxController {
       "lastName": lastName,
       "username": username,
       "email": email,
+      "phoneNumber": phoneNumber,
       "password": password,
     };
     try {

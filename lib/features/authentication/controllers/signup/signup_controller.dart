@@ -18,6 +18,7 @@ class SignupController extends GetxController {
   final lastName = TextEditingController();
   final userName = TextEditingController();
   final email = TextEditingController();
+  final phoneNumber = TextEditingController();
   final password = TextEditingController();
   GlobalKey<FormState> signupFormKey =
       GlobalKey<FormState>(); //? form key for form validation
@@ -43,6 +44,7 @@ class SignupController extends GetxController {
         lastName.text.trim(),
         userName.text.trim(),
         email.text.trim(),
+        phoneNumber.text.trim(),
         password.text.trim(),
       );
       //* remove loader
@@ -70,29 +72,29 @@ class SignupController extends GetxController {
     }
   }
 
-  void signupTest() async {
-    try {
-      final response =
-          await AuthenticationRepository.instance.registerWithEmailAndPassword(
-        firstName.text.trim(),
-        lastName.text.trim(),
-        userName.text.trim(),
-        email.text.trim(),
-        password.text.trim(),
-      );
-      print('type = ${response.runtimeType}');
-      print(response);
-      print('pin1 = ${response['pin1']}');
-      print('pin2 = ${response['pin2']}');
+  // void signupTest() async {
+  //   try {
+  //     final response =
+  //         await AuthenticationRepository.instance.registerWithEmailAndPassword(
+  //       firstName.text.trim(),
+  //       lastName.text.trim(),
+  //       userName.text.trim(),
+  //       email.text.trim(),
+  //       password.text.trim(),
+  //     );
+  //     print('type = ${response.runtimeType}');
+  //     print(response);
+  //     print('pin1 = ${response['pin1']}');
+  //     print('pin2 = ${response['pin2']}');
 
-      //* show success message
-      CustomLoaders.successSnackBar(
-        title: 'Congratulations!',
-        message: 'Your account has been created.',
-      );
-    } catch (e) {
-      //* show some generic error to the user
-      CustomLoaders.errorSnackBar(title: 'Oh snap!', message: e.toString());
-    }
-  }
+  //     //* show success message
+  //     CustomLoaders.successSnackBar(
+  //       title: 'Congratulations!',
+  //       message: 'Your account has been created.',
+  //     );
+  //   } catch (e) {
+  //     //* show some generic error to the user
+  //     CustomLoaders.errorSnackBar(title: 'Oh snap!', message: e.toString());
+  //   }
+  // }
 }

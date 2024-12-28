@@ -74,6 +74,17 @@ class SignupForm extends StatelessWidget {
           ),
           const Gap(TSizes.spaceBtwInputFields),
 
+          //* phone number
+          TextFormField(
+            controller: controller.phoneNumber,
+            validator: (value) => TValidator.validatePhoneNumber(value),
+            decoration: const InputDecoration(
+              labelText: TTexts.phoneNumber,
+              prefixIcon: Icon(Iconsax.call),
+            ),
+          ),
+          const Gap(TSizes.spaceBtwInputFields),
+
           //* password
           Obx(
             //? wrap it with observer to redraw the widget on change
