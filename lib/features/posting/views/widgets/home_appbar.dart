@@ -36,7 +36,7 @@ class HomeAppBar extends StatelessWidget {
                 return const CustomShimmerEffect(width: 80, height: 15);
               }
               return Text(
-                'Username',
+                controller.user.value.fullName,
                 style: Theme.of(context)
                     .textTheme
                     .headlineSmall!
@@ -46,12 +46,12 @@ class HomeAppBar extends StatelessWidget {
           ),
         ],
       ),
-      actions: [
-        IconButton(
-          onPressed: () => Get.to(() => const SettingsScreen()),
-          icon: const Icon(Icons.settings),
-        )
-      ],
+      // actions: [
+      //   IconButton(
+      //     onPressed: () => Get.to(() => const SettingsScreen()),
+      //     icon: const Icon(Icons.settings),
+      //   )
+      // ],
     );
   }
 }

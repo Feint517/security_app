@@ -4,7 +4,8 @@ class UserModel {
   String lastName;
   final String username;
   final String email;
-  final String password;
+  final String phoneNumber;
+  //final String password;
 
   UserModel({
     required this.userId,
@@ -12,7 +13,8 @@ class UserModel {
     required this.lastName,
     required this.username,
     required this.email,
-    this.password = '',
+    required this.phoneNumber,
+    //this.password = '',
   });
 
   //* helper function to get the full name
@@ -39,6 +41,24 @@ class UserModel {
         lastName: '',
         username: '',
         email: '',
-        password: '',
+        phoneNumber: '',
+        //password: '',
       );
+
+  factory UserModel.fromSnapshot(
+    Map<String, dynamic>? document,
+  ) {
+    if (document != null) {
+      return UserModel(
+        userId: document['_id'],
+        firstName: document['firstName'],
+        lastName: document['lastName'],
+        username: document['username'],
+        email: document['email'],
+        phoneNumber: document['phoneNumber'],
+      );
+    } else {
+      return UserModel.empty();
+    }
+  }
 }

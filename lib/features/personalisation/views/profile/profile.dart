@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:security_app/data/repositories/server_repository.dart';
 import 'package:security_app/data/services/secure_storage.dart';
 import 'package:security_app/utils/helpers/helper_functions.dart';
 import '../../../../common/widgets/appbar/appbar.dart';
@@ -19,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userController = UserController.instance;
+    final controller = UserController.instance;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -59,13 +60,13 @@ class ProfileScreen extends StatelessWidget {
                         SettingsMenuTile(
                           icon: Iconsax.personalcard,
                           title: "Name",
-                          subtitle: 'subtitle',
+                          subtitle: controller.user.value.fullName,
                           onTap: () {},
                         ),
                         SettingsMenuTile(
-                          icon: Iconsax.safe_home,
+                          icon: Iconsax.call,
                           title: "Phone Number",
-                          subtitle: '+213 ......',
+                          subtitle: controller.user.value.phoneNumber,
                           onTap: () {},
                         ),
                         SettingsMenuTile(
@@ -89,6 +90,9 @@ class ProfileScreen extends StatelessWidget {
                           width: double.infinity,
                           child: OutlinedButton(
                             onPressed: () async {
+                              final isUp = await ServerRepository.instance
+                                  .isServerRunning();
+                              if (isUp == false) {}
                               final refreshToken =
                                   await SecureStorage.getRefreshToken();
                               AuthenticationRepository.instance
@@ -104,8 +108,6 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-            //* body
           ],
         ),
       ),

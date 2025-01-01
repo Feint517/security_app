@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:security_app/features/posting/views/home.dart';
+import 'package:security_app/navigation_menu.dart';
 import 'package:security_app/utils/helpers/helper_functions.dart';
-
 import '../../../../utils/constants/sizes.dart';
 
 class PinsScreen extends StatelessWidget {
@@ -56,7 +55,7 @@ class PinsScreen extends StatelessWidget {
                 width: THelperFunctions.screenWidth() * 0.5,
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.offAll(() => const HomeScreen());
+                    Get.offAll(() => const NavigationMenu());
                   },
                   child: const Text('Next'),
                 ),

@@ -225,19 +225,24 @@ class AuthenticationRepository extends GetxController {
 
       if (response.statusCode == 200) {
         final json = jsonDecode(response.body);
-        final newAccessToken = json['accessToken'];
-        final newRefreshToken = json['refreshToken'];
+        print('accessToken = ${json['accessToken']}');
+        print('refreshToken = ${json['refreshToken']}');
+        //final newAccessToken = json['accessToken'];
+        //final newRefreshToken = json['refreshToken'];
+
+        //print('newAccessToken = $newAccessToken');
+        //print('newRefreshToken = $newRefreshToken');
 
         //* Save new tokens
-        await SecureStorage.saveTokens(newAccessToken, newRefreshToken);
+        //await SecureStorage.saveTokens(newAccessToken, newRefreshToken);
       } else {
         throw Exception('Failed to refresh token');
       }
     } catch (e) {
       print('Error refreshing token: $e');
       //* Optionally log out the user if refresh fails
-      await SecureStorage.clearTokens();
-      Get.offAll(() => const LoginScreen());
+      //await SecureStorage.clearTokens();
+      //Get.offAll(() => const LoginScreen());
     }
   }
 }

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:security_app/features/authentication/views/signup/pins.dart';
 import '../../../../common/styles/loaders.dart';
 import '../../../../data/repositories/authentication_repository.dart';
+import '../../../../data/services/secure_storage.dart';
 import '../../../../utils/constants/animations.dart';
 import '../../../../utils/helpers/network_manager.dart';
 import '../../../../utils/popups/fullscreen_loader.dart';
@@ -47,6 +48,11 @@ class SignupController extends GetxController {
         phoneNumber.text.trim(),
         password.text.trim(),
       );
+
+      await SecureStorage.saveTokens(
+          response['accessToken'],
+          response['refreshToken'],
+        );
       //* remove loader
       CustomFullscreenLoader.stopLoading();
 
@@ -71,30 +77,4 @@ class SignupController extends GetxController {
       CustomLoaders.errorSnackBar(title: 'Oh snap!', message: e.toString());
     }
   }
-
-  // void signupTest() async {
-  //   try {
-  //     final response =
-  //         await AuthenticationRepository.instance.registerWithEmailAndPassword(
-  //       firstName.text.trim(),
-  //       lastName.text.trim(),
-  //       userName.text.trim(),
-  //       email.text.trim(),
-  //       password.text.trim(),
-  //     );
-  //     print('type = ${response.runtimeType}');
-  //     print(response);
-  //     print('pin1 = ${response['pin1']}');
-  //     print('pin2 = ${response['pin2']}');
-
-  //     //* show success message
-  //     CustomLoaders.successSnackBar(
-  //       title: 'Congratulations!',
-  //       message: 'Your account has been created.',
-  //     );
-  //   } catch (e) {
-  //     //* show some generic error to the user
-  //     CustomLoaders.errorSnackBar(title: 'Oh snap!', message: e.toString());
-  //   }
-  // }
 }

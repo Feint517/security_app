@@ -11,4 +11,5 @@ class APIConstants {
   static const String verifyRefreshToken = '${url}auth/check-refresh-token';
   static const String protectedEndpoint = '';
   static const String refreshTokens = '${url}auth/refresh-tokens';
+  static const String fetchUserData = '${url}user/fetch/:id';
 }

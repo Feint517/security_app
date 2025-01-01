@@ -7,10 +7,10 @@ import 'package:security_app/utils/constants/api_constant.dart';
 
 class ServerRepository extends GetxController {
   static ServerRepository get instance => Get.find();
-  // @override
-  // void onReady() {
-  //   isServerRunning();
-  // }
+  @override
+  void onReady() {
+    isServerRunning();
+  }
 
   Future<bool> isServerRunning() async {
     try {

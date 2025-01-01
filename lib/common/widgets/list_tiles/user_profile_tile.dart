@@ -41,24 +41,22 @@ class UserProfileTile extends StatelessWidget {
       // ),
       leading: const CustomCircularImage(image: TImages.avatar),
       title: Text(
-        //controller.user.value.fullName,
-        'Full name',
+        controller.user.value.fullName,
         style: Theme.of(context)
             .textTheme
             .headlineSmall!
             .apply(color: TColors.white),
       ),
       subtitle: Text(
-        //controller.user.value.email,
-        'Email',
+        controller.user.value.email,
         style:
             Theme.of(context).textTheme.bodyMedium!.apply(color: TColors.white),
       ),
-      trailing: IconButton(
-        onPressed: onPressed,
-        icon: const Icon(Iconsax.edit),
-        color: TColors.white,
-      ),
+      // trailing: IconButton(
+      //   onPressed: onPressed,
+      //   icon: const Icon(Iconsax.edit),
+      //   color: TColors.white,
+      // ),
     );
   }
 }

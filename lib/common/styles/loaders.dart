@@ -13,7 +13,7 @@ class CustomLoaders {
     ScaffoldMessenger.of(Get.context!).showSnackBar(
       SnackBar(
         elevation: 0,
-        duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 5),
         backgroundColor: Colors.transparent,
         content: Container(
           padding: const EdgeInsets.all(12),
@@ -38,7 +38,7 @@ class CustomLoaders {
   static successSnackBar({
     required title,
     message = '',
-    duration = 3,
+    duration = 4,
   }) {
     Get.snackbar(
       title,
@@ -58,7 +58,7 @@ class CustomLoaders {
   static warningSnackBar({
     required title,
     message = '',
-    duration = 3,
+    duration = 4,
   }) {
     Get.snackbar(
       title,
@@ -77,7 +77,7 @@ class CustomLoaders {
   static errorSnackBar({
     required title,
     message = '',
-    duration = 3,
+    duration = 4,
   }) {
     Get.snackbar(
       title,
