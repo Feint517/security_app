@@ -4,8 +4,8 @@ class ProjectModel {
   String name;
   String teamId;
   int budget;
-  //String startDate;
-  //String timeline;
+  String startDate;
+  String timeline;
   int advancementRate;
 
   ProjectModel({
@@ -14,8 +14,8 @@ class ProjectModel {
     required this.name,
     required this.teamId,
     required this.budget,
-    //required this.startDate,
-    //required this.timeline,
+    required this.startDate,
+    required this.timeline,
     required this.advancementRate,
   });
 
@@ -27,8 +27,8 @@ class ProjectModel {
       name: json['name'],
       teamId: json['team'],
       budget: json['budget'],
-      //startDate: json['startDate'],
-      //timeline: json['timeline'],
+      startDate: json['startDate'],
+      timeline: json['timeline'],
       advancementRate: json['advancementRate'],
     );
   }

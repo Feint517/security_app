@@ -36,3 +36,6 @@ Future<void> main() async {
 
   runApp(const App());
 }
+
+
+//! known issues: when the token expires and the user enters the app, it can't fetch the user data... i need to work on the refresh token function.

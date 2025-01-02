@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:security_app/features/authentication/views/signup/team_select.dart';
 import 'package:security_app/navigation_menu.dart';
 import 'package:security_app/utils/constants/api_constant.dart';
 import '../../features/authentication/views/login/login.dart';
@@ -25,7 +24,6 @@ class AuthenticationRepository extends GetxController {
   }
 
   void screenRedirect() async {
-    //Get.to(()=> const TeamSelectScreen());
     final loggedInState = await isLoggedIn();
     if (loggedInState) {
       Get.offAll(() => const NavigationMenu());

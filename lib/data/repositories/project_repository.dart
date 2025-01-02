@@ -9,7 +9,7 @@ import '../../utils/constants/api_constant.dart';
 class ProjectRepository extends GetxController {
   static ProjectRepository get instance => Get.find();
 
-  Future<void> fetchAllProjects() async {
+  Future<List<ProjectModel>> fetchAllProjects() async {
     try {
       final response = await http.get(
         Uri.parse(APIConstants.fetchAllProjects),
@@ -24,7 +24,8 @@ class ProjectRepository extends GetxController {
 
         print('Fetching projects.....');
         print('Numbers of projects found = ${projects.length}');
-        print('jsonResponse = $jsonResponse');
+        //print('jsonResponse = $jsonResponse');
+        return projects;
       } else {
         throw Exception('Failed to fetch teams: ${response.body}');
       }
@@ -34,7 +35,8 @@ class ProjectRepository extends GetxController {
     }
   }
 
-  Future<void> fetchProjectsByUserId({required String userId}) async {
+  Future<List<ProjectModel>> fetchProjectsByUserId(
+      {required String userId}) async {
     final body = {"userId": userId};
     try {
       final response = await http.post(
@@ -59,9 +61,11 @@ class ProjectRepository extends GetxController {
         print('Fetching projects.....');
         print('Numbers of projects found = ${projects.length}');
         print('jsonResponse = $jsonResponse');
+        return projects;
       } else {
         print('Failed with status: ${response.statusCode}');
         print('Response body: ${response.body}');
+        throw Exception('Failed to fetch teams: ${response.body}');
       }
     } catch (e) {
       throw ('Something went wrong, please try again');

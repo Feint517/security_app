@@ -53,6 +53,7 @@ class ProfileScreen extends StatelessWidget {
                         //* account settings
                         const CustomSectionHeading(
                           title: "Account details",
+                          textColor: Colors.white,
                           showActionButton: false,
                         ),
                         const Gap(TSizes.spaceBtwItems),
@@ -98,7 +99,10 @@ class ProfileScreen extends StatelessWidget {
                               AuthenticationRepository.instance
                                   .logout(refreshToken!);
                             },
-                            child: const Text('Log out'),
+                            child: const Text(
+                              'Log out',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ),
                         const Gap(TSizes.spaceBtwSections * 2.5),

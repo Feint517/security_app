@@ -4,22 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:security_app/features/authentication/controllers/signup/team_select_controller.dart';
-
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
 
 class TeamTile extends StatelessWidget {
-  TeamTile(
-      {super.key,
-      required this.id,
-      required this.teamName,
-      required this.description});
+  const TeamTile({
+    super.key,
+    required this.id,
+    required this.teamName,
+    required this.description,
+  });
 
   final String id;
   final String teamName;
   final String description;
-  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {

@@ -50,7 +50,7 @@ class TeamSelectScreen extends StatelessWidget {
                           );
                         },
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
