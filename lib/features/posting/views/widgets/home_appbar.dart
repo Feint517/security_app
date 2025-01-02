@@ -5,7 +5,6 @@ import '../../../../common/widgets/loaders/shimmer.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/text_strings.dart';
 import '../../../personalisation/controllers/user_controller.dart';
-import '../../../personalisation/views/settings/settings_screen.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({

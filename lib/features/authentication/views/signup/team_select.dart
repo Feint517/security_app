@@ -30,8 +30,9 @@ class TeamSelectScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       'Before we continue, please choose the teams that you belong to from the following teams:',
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                     Obx(
                       () => ListView.separated(
@@ -54,14 +55,6 @@ class TeamSelectScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                width: THelperFunctions.screenWidth() * 0.5,
-                child: ElevatedButton(
-                  onPressed: () async {},
-                  child: const Text('Test'),
-                ),
-              ),
-              const Gap(TSizes.spaceBtwInputFields),
               SizedBox(
                 width: THelperFunctions.screenWidth() * 0.5,
                 child: ElevatedButton(

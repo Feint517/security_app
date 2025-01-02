@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:security_app/common/widgets/custon_shapes/container/primary_header_container.dart';
-import 'package:security_app/data/repositories/project_repository.dart';
-import 'package:security_app/data/services/secure_storage.dart';
 import 'package:security_app/features/posting/views/widgets/home_appbar.dart';
 import 'package:security_app/features/posting/views/widgets/project_tile.dart';
 import 'package:security_app/utils/helpers/helper_functions.dart';
@@ -37,16 +35,12 @@ class HomeScreen extends StatelessWidget {
                       height: THelperFunctions.screenHeight() * 0.8,
                       child: Column(
                         children: [
+                          const Gap(TSizes.spaceBtwSections / 2),
                           SizedBox(
                             width: double.infinity,
-                            child: OutlinedButton(
-                              onPressed: () async {
-                                final userId = await SecureStorage.getUserId();
-                                controller.fetchProjectsByUserId(
-                                  userId: userId!,
-                                );
-                              },
-                              child: const Text('Test'),
+                            child: Text(
+                              'Projects list:',
+                              style: Theme.of(context).textTheme.headlineMedium,
                             ),
                           ),
                           Obx(

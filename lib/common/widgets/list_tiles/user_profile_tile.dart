@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:security_app/common/widgets/custon_shapes/container/circular_image.dart';
 import 'package:security_app/utils/constants/image_strings.dart';
 
