@@ -18,6 +18,7 @@ class SignupController extends GetxController {
   final firstName = TextEditingController();
   final lastName = TextEditingController();
   final userName = TextEditingController();
+  final activity = TextEditingController();
   final email = TextEditingController();
   final phoneNumber = TextEditingController();
   final password = TextEditingController();
@@ -41,18 +42,20 @@ class SignupController extends GetxController {
 
       final response =
           await AuthenticationRepository.instance.registerWithEmailAndPassword(
-        firstName.text.trim(),
-        lastName.text.trim(),
-        userName.text.trim(),
-        email.text.trim(),
-        phoneNumber.text.trim(),
-        password.text.trim(),
+        firstName: firstName.text.trim(),
+        lastName: lastName.text.trim(),
+        username: userName.text.trim(),
+        activity: activity.text.trim(),
+        email: email.text.trim(),
+        phoneNumber: phoneNumber.text.trim(),
+        password: password.text.trim(),
       );
 
-      await SecureStorage.saveTokens(
-          response['accessToken'],
-          response['refreshToken'],
-        );
+      await SecureStorage.saveTokensAndId(
+        userId: response['userId'],
+        accessToken: response['accessToken'],
+        refreshToken: response['refreshToken'],
+      );
       //* remove loader
       CustomFullscreenLoader.stopLoading();
 

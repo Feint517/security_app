@@ -12,4 +12,11 @@ class APIConstants {
   static const String protectedEndpoint = '';
   static const String refreshTokens = '${url}auth/refresh-tokens';
   static const String fetchUserData = '${url}user/fetch/:id';
+  static const String fetchAllTeams = '${url}teams/fetch';
+  static const String getTeamMembers = '${url}teams/members';
+  static const String addTeamMember = '${url}teams/add-member';
+  static const String fetchAllProjects = '${url}projects/fetch';
+  static const String fetchProjectsByUserId = '${url}projects/user';
+  static const String updateAdvancementRate =
+      '${url}projects/update-advancement-rate';
 }

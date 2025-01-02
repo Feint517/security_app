@@ -5,7 +5,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:security_app/common/widgets/custon_shapes/container/primary_header_container.dart';
 import 'package:security_app/data/repositories/authentication_repository.dart';
-import 'package:security_app/data/services/secure_storage.dart';
 import 'package:security_app/features/personalisation/controllers/user_controller.dart';
 import 'package:security_app/features/posting/views/widgets/home_appbar.dart';
 import 'package:security_app/utils/helpers/helper_functions.dart';

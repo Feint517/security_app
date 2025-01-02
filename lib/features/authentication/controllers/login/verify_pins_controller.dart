@@ -47,8 +47,8 @@ class VerifyPinsController extends GetxController {
       //* save tokens to local storage
       if (LoginController.instance.rememberMe.value) {
         await SecureStorage.saveTokens(
-          json['accessToken'],
-          json['refreshToken'],
+          accessToken: json['accessToken'],
+          refreshToken: json['refreshToken'],
         );
       }
       CustomLoaders.successSnackBar(title: 'Hooray', message: 'Welcome Back');

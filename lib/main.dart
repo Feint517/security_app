@@ -4,10 +4,12 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:security_app/app.dart';
+import 'package:security_app/data/repositories/project_repository.dart';
 import 'package:security_app/data/repositories/server_repository.dart';
 import 'package:security_app/data/repositories/user_repository.dart';
 import 'package:security_app/data/services/location_service.dart';
 import 'data/repositories/authentication_repository.dart';
+import 'data/repositories/team_repository.dart';
 
 Future<void> main() async {
   //* Suppress debugPrint logs
@@ -24,10 +26,13 @@ Future<void> main() async {
   //* await native splash
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
+  //* invoke main repos
   Get.put(LocationService());
-  Get.put(AuthenticationRepository());  //? invoke the authentication repo
+  Get.put(AuthenticationRepository());
   Get.put(UserRepository());
   Get.put(ServerRepository());
+  Get.put(TeamRepository());
+  Get.put(ProjectRepository());
 
   runApp(const App());
 }

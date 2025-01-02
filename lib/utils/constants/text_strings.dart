@@ -19,6 +19,7 @@ class TTexts {
   static const String pin1 = "Pin1";
   static const String pin2 = "Pin2";
   static const String username = "Username";
+  static const String activity = "Activity";
   static const String phoneNumber = "Phone Number";
   static const String rememberMe = "Remember Me";
   static const String forgetPassword = "Forget Passwrod?";
@@ -54,7 +55,8 @@ class TTexts {
       "Congratulations! Your account awaits, please verify your email to start using it";
 
   static const String sayContinue = "Continue";
-  static const String enterPins = "Please enter the PIN codes related to your account:";
+  static const String enterPins =
+      "Please enter the PIN codes related to your account:";
 
   //* success screen
   static const String yourAccountCreatedTitle =

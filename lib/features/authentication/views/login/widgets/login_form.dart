@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:security_app/data/repositories/project_repository.dart';
+import 'package:security_app/data/repositories/server_repository.dart';
+import 'package:security_app/data/repositories/team_repository.dart';
 import 'package:security_app/testing_controller.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
@@ -109,9 +112,12 @@ class LoginForm extends StatelessWidget {
               width: double.infinity, //? to make the sized button full width
               child: OutlinedButton(
                 onPressed: () async {
-                  testingController.checkUserCredentials(
-                    controller.email.text,
-                    controller.password.text,
+                  await TeamRepository.instance.addTeamMember(
+                    teamIds: [
+                      '67767eda9abff481da286fe2',
+                      '67767f119abff481da286fe4'
+                    ],
+                    userId: '677552226cb89f86550438fe',
                   );
                 },
                 child: const Text('Test'),

@@ -63,6 +63,19 @@ class SignupForm extends StatelessWidget {
           ),
           const Gap(TSizes.spaceBtwInputFields),
 
+          //* activity
+          TextFormField(
+            controller: controller.activity,
+            validator: (value) =>
+                TValidator.validateEmptyText('Username', value),
+            expands: false,
+            decoration: const InputDecoration(
+              labelText: TTexts.activity,
+              prefixIcon: Icon(Iconsax.hashtag_down),
+            ),
+          ),
+          const Gap(TSizes.spaceBtwInputFields),
+
           //* email
           TextFormField(
             controller: controller.email,

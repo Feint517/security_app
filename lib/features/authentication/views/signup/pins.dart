@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:security_app/navigation_menu.dart';
+import 'package:security_app/features/authentication/controllers/signup/team_select_controller.dart';
+import 'package:security_app/features/authentication/views/signup/team_select.dart';
 import 'package:security_app/utils/helpers/helper_functions.dart';
 import '../../../../utils/constants/sizes.dart';
 
@@ -13,6 +14,7 @@ class PinsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(TeamSelectController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -54,8 +56,9 @@ class PinsScreen extends StatelessWidget {
               SizedBox(
                 width: THelperFunctions.screenWidth() * 0.5,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Get.offAll(() => const NavigationMenu());
+                  onPressed: () async {
+                    controller.searchForTeams();
+                    Get.to(() => const TeamSelectScreen());
                   },
                   child: const Text('Next'),
                 ),
