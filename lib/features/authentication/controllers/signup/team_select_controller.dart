@@ -10,7 +10,7 @@ class TeamSelectController extends GetxController {
   var selectedTeams = <String, bool>{}.obs;
   //List<String> selectedTeamIds = [];
 
-  void searchForTeams() async {
+  Future<void> searchForTeams() async {
     try {
       teams.value = await TeamRepository.instance.fetchAllTeams();
       //teams.value = await repo.fetchAllTeams();

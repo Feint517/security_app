@@ -2,13 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:security_app/features/authentication/views/signup/pins.dart';
+import 'package:security_app/data/repositories/server_repository.dart';
+import 'package:security_app/utils/helpers/helper_functions.dart';
 import '../../../../common/styles/loaders.dart';
 import '../../../../data/repositories/authentication_repository.dart';
 import '../../../../data/services/secure_storage.dart';
 import '../../../../utils/constants/animations.dart';
 import '../../../../utils/helpers/network_manager.dart';
 import '../../../../utils/popups/fullscreen_loader.dart';
+import '../../views/signup/team_select.dart';
 
 class SignupController extends GetxController {
   static SignupController get instance => Get.find();
@@ -25,7 +27,7 @@ class SignupController extends GetxController {
   GlobalKey<FormState> signupFormKey =
       GlobalKey<FormState>(); //? form key for form validation
 
-  void signup() async {
+  Future<void> signup() async {
     try {
       //* start loading
       CustomFullscreenLoader.openLoadingDialog(
@@ -40,6 +42,14 @@ class SignupController extends GetxController {
         return;
       }
 
+      //* check if server is running
+      final isRunning = await ServerRepository.instance.isServerRunning();
+      print('isRunning = $isRunning');
+      if (!isRunning) {
+        CustomFullscreenLoader.stopLoading();
+        return;
+      }
+
       final response =
           await AuthenticationRepository.instance.registerWithEmailAndPassword(
         firstName: firstName.text.trim(),
@@ -47,7 +57,8 @@ class SignupController extends GetxController {
         username: userName.text.trim(),
         activity: activity.text.trim(),
         email: email.text.trim(),
-        phoneNumber: phoneNumber.text.trim(),
+        phoneNumber:
+            THelperFunctions.formatPhoneNumber(phoneNumber.text.trim()),
         password: password.text.trim(),
       );
 
@@ -66,12 +77,13 @@ class SignupController extends GetxController {
       );
 
       //* redirect
-      Get.to(
-        () => PinsScreen(
-          pin1: response['pin1'],
-          pin2: response['pin2'],
-        ),
-      );
+
+      // Get.to(
+      //   () => PinsScreen(
+      //     pin1: response['pin1'],
+      //     pin2: response['pin2'],
+      //   ),
+      // );
     } catch (e) {
       //* remove the loader
       CustomFullscreenLoader.stopLoading();

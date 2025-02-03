@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -5,6 +7,7 @@ import 'package:security_app/data/services/location_service.dart';
 import 'package:security_app/features/authentication/views/login/verify_pins.dart';
 import '../../../../common/styles/loaders.dart';
 import '../../../../data/repositories/authentication_repository.dart';
+import '../../../../data/repositories/server_repository.dart';
 import '../../../../utils/constants/animations.dart';
 import '../../../../utils/helpers/network_manager.dart';
 import '../../../../utils/popups/fullscreen_loader.dart';
@@ -30,6 +33,28 @@ class LoginController extends GetxController {
       //* check internet connection
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
+        CustomFullscreenLoader.stopLoading();
+        return;
+      }
+
+      //* check if server is running
+      // final isRunning = await ServerRepository.instance.isServerRunning();
+      // print('isRunning = $isRunning');
+      // if (!isRunning) {
+      //   CustomLoaders.errorSnackBar(
+      //     title: 'Enable location services!',
+      //     message: 'Your location is required to login.',
+      //   );
+      //   CustomFullscreenLoader.stopLoading();
+      //   return;
+      // }
+
+      final errorMessage = await ServerRepository.instance.isServerRunning2();
+      if (errorMessage != null) {
+        CustomLoaders.errorSnackBar(
+          title: 'Server Error',
+          message: errorMessage, //? ✅ Display timeout or connection error
+        );
         CustomFullscreenLoader.stopLoading();
         return;
       }

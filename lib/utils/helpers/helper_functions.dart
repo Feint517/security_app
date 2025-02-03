@@ -54,4 +54,11 @@ class THelperFunctions {
 
     return wrappedList;
   }
+
+  static String formatPhoneNumber(String phoneNumber) {
+    if (phoneNumber.startsWith('0')) {
+      return '+213${phoneNumber.substring(1)}';
+    }
+    return '+213$phoneNumber';
+  }
 }

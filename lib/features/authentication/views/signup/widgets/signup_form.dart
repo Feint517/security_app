@@ -6,6 +6,8 @@ import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/validators/validators.dart';
 import '../../../controllers/signup/signup_controller.dart';
+import '../../../controllers/signup/team_select_controller.dart';
+import '../team_select.dart';
 
 class SignupForm extends StatelessWidget {
   const SignupForm({
@@ -15,6 +17,7 @@ class SignupForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignupController());
+    final teamsController = Get.put(TeamSelectController());
     return Form(
       key: controller.signupFormKey, //? assign the key to the form
       child: Column(
@@ -126,7 +129,11 @@ class SignupForm extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () => controller.signup(),
+              onPressed: () async {
+                await controller.signup();
+                await teamsController.searchForTeams();
+                Get.to(() => const TeamSelectScreen());
+              },
               child: const Text(TTexts.createAccount),
             ),
           ),

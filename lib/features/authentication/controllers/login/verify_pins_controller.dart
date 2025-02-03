@@ -45,8 +45,15 @@ class VerifyPinsController extends GetxController {
         return;
       }
       //* save tokens to local storage
+      // if (LoginController.instance.rememberMe.value) {
+      //   await SecureStorage.saveTokens(
+      //     accessToken: json['accessToken'],
+      //     refreshToken: json['refreshToken'],
+      //   );
+      // }
       if (LoginController.instance.rememberMe.value) {
-        await SecureStorage.saveTokens(
+        await SecureStorage.saveTokensAndId(
+          userId: json['userId'],
           accessToken: json['accessToken'],
           refreshToken: json['refreshToken'],
         );
