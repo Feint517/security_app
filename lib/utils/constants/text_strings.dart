@@ -16,6 +16,8 @@ class TTexts {
   static const String lastName = "Last Name";
   static const String email = "Email";
   static const String password = "Password";
+  static const String currentPassword = "Current password";
+  static const String newPassword = "New password";
   static const String pin1 = "Pin1";
   static const String pin2 = "Pin2";
   static const String username = "Username";
@@ -66,21 +68,4 @@ class TTexts {
 
   //* home appbar title
   static const String homeAppbarTitle = "Good morning";
-  static const String homeAppbarSubtitle = "Feeling good today?";
-
-  //* drug search
-  static const String drugSearch1 = "Medication 1 name";
-  static const String drugSearch2 = "Medication 2 name";
-
-  //* treatment info
-  static const String pillName = "Pill name:";
-  static const String eyeDropName = "Eye drop name:";
-  static const String liquidName = "Liquid name:";
-  static const String injectionName = "Injection name:";
-  static const String inhalerName = "Inhaler name:";
-  static const String dose = "Dose:";
-  static const String timing = "Timing:";
-  static const String frequency = "Frequency:";
-  static const String date = "Date:";
-  static const String hour = "Hour:";
 }

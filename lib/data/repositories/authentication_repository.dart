@@ -215,7 +215,7 @@ class AuthenticationRepository extends GetxController {
     return accessToken != null;
   }
 
-  Future<void> refreshTokens() async {
+  Future<String?> refreshTokens() async {
     final refreshToken = await SecureStorage.getRefreshToken();
 
     try {
@@ -227,24 +227,136 @@ class AuthenticationRepository extends GetxController {
 
       if (response.statusCode == 200) {
         final json = jsonDecode(response.body);
-        print('accessToken = ${json['accessToken']}');
-        print('refreshToken = ${json['refreshToken']}');
-        //final newAccessToken = json['accessToken'];
-        //final newRefreshToken = json['refreshToken'];
-
-        //print('newAccessToken = $newAccessToken');
-        //print('newRefreshToken = $newRefreshToken');
+        print('---------------REFRESHING TOKENS------------------------');
+        print('new accessToken = ${json['accessToken']}');
+        print('new refreshToken = ${json['refreshToken']}');
+        final newAccessToken = json['accessToken'];
+        final newRefreshToken = json['refreshToken'];
 
         //* Save new tokens
-        //await SecureStorage.saveTokens(newAccessToken, newRefreshToken);
+        await SecureStorage.saveTokens(
+          accessToken: newAccessToken,
+          refreshToken: newRefreshToken,
+        );
+
+        return newAccessToken;
       } else {
         throw Exception('Failed to refresh token');
       }
     } catch (e) {
       print('Error refreshing token: $e');
+      return null;
       //* Optionally log out the user if refresh fails
       //await SecureStorage.clearTokens();
       //Get.offAll(() => const LoginScreen());
     }
+  }
+
+  //* Function to make API requests with automatic token refresh
+  Future<http.Response> authenticatedRequest({
+    required String endpoint,
+    required String method,
+    Map<String, dynamic>? body,
+  }) async {
+    String? accessToken = await SecureStorage.getAccessToken();
+
+    //* Define headers
+    final headers = {
+      "Authorization": "Bearer $accessToken",
+      "Content-Type": "application/json",
+    };
+
+    //* Create request based on method type
+    http.Response response;
+    final url = Uri.parse(endpoint);
+    print('Request sent to => $url');
+
+    try {
+      switch (method.toUpperCase()) {
+        case "GET":
+          response = await http.get(url, headers: headers);
+          print(
+              '-------------------------RESPONSE INFO------------------------------');
+          print('status code = ${response.statusCode}');
+          print('body = ${response.body}');
+          break;
+        case "POST":
+          response =
+              await http.post(url, headers: headers, body: jsonEncode(body));
+          print(
+              '-------------------------RESPONSE INFO------------------------------');
+          print('status code = ${response.statusCode}');
+          print('body = ${response.body}');
+          break;
+        case "PUT":
+          response =
+              await http.put(url, headers: headers, body: jsonEncode(body));
+          print(
+              '-------------------------RESPONSE INFO------------------------------');
+          print('status code = ${response.statusCode}');
+          print('body = ${response.body}');
+          break;
+        case "DELETE":
+          response = await http.delete(url, headers: headers);
+          print(
+              '-------------------------RESPONSE INFO------------------------------');
+          print('status code = ${response.statusCode}');
+          print('body = ${response.body}');
+          break;
+        default:
+          throw Exception("Unsupported HTTP method: $method");
+      }
+    } catch (e) {
+      print("Error making $method request: $e");
+      return http.Response("Error: $e", 500);
+    }
+
+    //* If access token is expired, refresh it
+    if (response.statusCode == 401) {
+      print("Access token expired. Attempting to refresh...");
+
+      accessToken = await refreshTokens();
+      if (accessToken == null) {
+        print("User needs to log in again.");
+        return response; //? Return original response if refre`sh fails
+      }
+
+      //* Retry the request with the new access token
+      headers["Authorization"] = "Bearer $accessToken";
+
+      switch (method.toUpperCase()) {
+        case "GET":
+          response = await http.get(url, headers: headers);
+          print(
+              '-------------------------RESPONSE INFO------------------------------');
+          print('status code = ${response.statusCode}');
+          print('body = ${response.body}');
+          break;
+        case "POST":
+          response =
+              await http.post(url, headers: headers, body: jsonEncode(body));
+          print(
+              '-------------------------RESPONSE INFO------------------------------');
+          print('status code = ${response.statusCode}');
+          print('body = ${response.body}');
+          break;
+        case "PUT":
+          response =
+              await http.put(url, headers: headers, body: jsonEncode(body));
+          print(
+              '-------------------------RESPONSE INFO------------------------------');
+          print('status code = ${response.statusCode}');
+          print('body = ${response.body}');
+          break;
+        case "DELETE":
+          response = await http.delete(url, headers: headers);
+          print(
+              '-------------------------RESPONSE INFO------------------------------');
+          print('status code = ${response.statusCode}');
+          print('body = ${response.body}');
+          break;
+      }
+    }
+    return response;
   }
 }

@@ -21,7 +21,6 @@ class UserController extends GetxController {
       profileLoading.value = true;
       final response = await UserRepository.instance.fetchUserData();
       user(response);
-      print(user.value.email);
     } catch (e) {
       user(UserModel.empty());
     } finally {

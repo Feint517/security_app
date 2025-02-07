@@ -37,10 +37,11 @@ class VerifyPinsController extends GetxController {
       print(json);
 
       if (status != 200) {
+        final error = json['error'];
         CustomFullscreenLoader.stopLoading();
         CustomLoaders.errorSnackBar(
           title: 'Oh snap!',
-          message: 'Something went wrong',
+          message: error['message'],
         );
         return;
       }

@@ -3,7 +3,9 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:security_app/data/repositories/server_repository.dart';
+import 'package:security_app/data/repositories/user_repository.dart';
 import 'package:security_app/data/services/secure_storage.dart';
+import 'package:security_app/features/personalisation/views/profile/change_password.dart';
 import 'package:security_app/utils/helpers/helper_functions.dart';
 import '../../../../common/widgets/appbar/appbar.dart';
 import '../../../../common/widgets/custon_shapes/container/primary_header_container.dart';
@@ -65,28 +67,41 @@ class ProfileScreen extends StatelessWidget {
                           onTap: () {},
                         ),
                         SettingsMenuTile(
+                          icon: Iconsax.personalcard,
+                          title: "Username",
+                          subtitle: controller.user.value.username,
+                          onTap: () {},
+                        ),
+                        SettingsMenuTile(
+                          icon: Iconsax.people,
+                          title: "Email",
+                          subtitle: controller.user.value.email,
+                          onTap: () {},
+                        ),
+                        SettingsMenuTile(
                           icon: Iconsax.call,
                           title: "Phone Number",
                           subtitle: controller.user.value.phoneNumber,
                           onTap: () {},
                         ),
                         SettingsMenuTile(
-                          icon: Iconsax.wallet,
-                          title: "Status",
-                          subtitle: '+213 ......',
-                          onTap: () {},
+                          icon: Iconsax.security_card,
+                          title: "Password",
+                          subtitle: 'Click to change',
+                          onTap: () =>
+                              Get.to(() => const ChangePasswordScreen()),
                         ),
                         //* app Setting
                         const Gap(TSizes.spaceBtwSections),
                         const CustomSectionHeading(
                           title: "App setting",
+                          textColor: Colors.white,
                           showActionButton: false,
                         ),
 
                         const Gap(TSizes.spaceBtwItems),
 
                         //* Logout button
-                        const Gap(TSizes.spaceBtwSections),
                         SizedBox(
                           width: double.infinity,
                           child: OutlinedButton(
@@ -105,7 +120,21 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Gap(TSizes.spaceBtwSections * 2.5),
+                        const Gap(TSizes.spaceBtwSections),
+
+                        // SizedBox(
+                        //   width: double.infinity,
+                        //   child: OutlinedButton(
+                        //     onPressed: () async {
+                        //       UserRepository.instance.fetchUserData();
+                        //     },
+                        //     child: const Text(
+                        //       'Test',
+                        //       style: TextStyle(color: Colors.white),
+                        //     ),
+                        //   ),
+                        // ),
+                        // const Gap(TSizes.spaceBtwItems),
                       ],
                     ),
                   )

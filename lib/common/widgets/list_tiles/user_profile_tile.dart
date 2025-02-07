@@ -46,7 +46,7 @@ class UserProfileTile extends StatelessWidget {
             .apply(color: TColors.white),
       ),
       subtitle: Text(
-        controller.user.value.email,
+        'ID: ${controller.user.value.userId}',
         style:
             Theme.of(context).textTheme.bodyMedium!.apply(color: TColors.white),
       ),

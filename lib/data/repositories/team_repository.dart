@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:security_app/data/repositories/authentication_repository.dart';
 import 'package:security_app/data/user/team_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:security_app/data/user/user_model.dart';
@@ -10,7 +11,7 @@ import '../../utils/constants/api_constant.dart';
 class TeamRepository extends GetxController {
   static TeamRepository get instance => Get.find();
 
-  Future<List<TeamModel>> fetchAllTeams() async {
+  Future<List<TeamModel>> oldFetchAllTeams() async {
     try {
       final response = await http.get(
         Uri.parse(APIConstants.fetchAllTeams),
@@ -30,6 +31,31 @@ class TeamRepository extends GetxController {
         return teams;
       } else {
         throw Exception('Failed to fetch teams: ${response.body}');
+      }
+    } catch (e) {
+      print('Error: $e');
+      throw Exception('An error occurred while fetching teams');
+    }
+  }
+
+  Future<List<TeamModel>> fetchAllTeams() async {
+    try {
+      final response =
+          await AuthenticationRepository.instance.authenticatedRequest(
+        endpoint: APIConstants.fetchAllTeams,
+        method: 'get',
+      );
+      if (response.statusCode == 200) {
+        final jsonResponse = jsonDecode(response.body);
+        List<TeamModel> teams = (jsonResponse as List)
+            .map((teamJson) => TeamModel.fromJson(teamJson))
+            .toList();
+
+        print('----------------------Teams Fetched Successfuly');
+        print('Numbers of teams found = ${teams.length}');
+        return teams;
+      } else {
+        throw Exception('Failed to fetch user data: ${response.body}');
       }
     } catch (e) {
       print('Error: $e');

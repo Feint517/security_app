@@ -13,6 +13,7 @@ class ProjectsController extends GetxController {
   }
 
   RxList<ProjectModel> projects = <ProjectModel>[].obs;
+  
 
   void fetchAvailableProjects() async {
     try {
@@ -34,4 +35,7 @@ class ProjectsController extends GetxController {
       print('Error fetching teams: $error');
     }
   }
+
+
+
 }

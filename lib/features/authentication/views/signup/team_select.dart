@@ -61,6 +61,7 @@ class TeamSelectScreen extends StatelessWidget {
                   onPressed: () async {
                     final teamsList = controller.getSelectedTeamIds();
                     final userId = await SecureStorage.getUserId();
+                    print('userId in team select = $userId');
                     await TeamRepository.instance.addTeamMember(
                       teamIds: teamsList,
                       userId: userId!,

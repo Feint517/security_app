@@ -9,6 +9,7 @@ import 'package:security_app/features/posting/views/widgets/project_tile.dart';
 import 'package:security_app/utils/helpers/helper_functions.dart';
 import '../../../utils/constants/sizes.dart';
 import '../controllers/projects_controller.dart';
+import 'widgets/project_popup.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -62,6 +63,18 @@ class HomeScreen extends StatelessWidget {
                                   startDate: project.startDate,
                                   timeline: project.timeline,
                                   advancementRate: project.advancementRate,
+                                  onTap: () => Get.bottomSheet(
+                                    ProjectDetailsPopup(
+                                      projectCode: project.projectCode,
+                                      projectId: project.projectId,
+                                      name: project.name,
+                                      teamId: project.teamId,
+                                      budget: project.budget,
+                                      startDate: project.startDate,
+                                      timeline: project.timeline,
+                                      advancementRate: project.advancementRate,
+                                    ),
+                                  ),
                                 );
                               },
                             ),

@@ -76,6 +76,11 @@ class SignupController extends GetxController {
         message: 'Your account has been created.',
       );
 
+      print('------------------Signup completed---------------------------');
+      print('userId = ${await SecureStorage.getUserId()}');
+      print('accessToken = ${await SecureStorage.getAccessToken()}');
+      print('refreshToken = ${await SecureStorage.getRefreshToken()}');
+
       //* redirect
 
       // Get.to(
