@@ -17,7 +17,7 @@ class SignupForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignupController());
-    final teamsController = Get.put(TeamSelectController());
+    
     return Form(
       key: controller.signupFormKey, //? assign the key to the form
       child: Column(
@@ -131,8 +131,7 @@ class SignupForm extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () async {
                 await controller.signup();
-                await teamsController.searchForTeams();
-                Get.to(() => const TeamSelectScreen());
+                
               },
               child: const Text(TTexts.createAccount),
             ),

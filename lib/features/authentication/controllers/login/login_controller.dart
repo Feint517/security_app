@@ -84,11 +84,11 @@ class LoginController extends GetxController {
         latitude: position.latitude.toString(),
         longitude: position.longitude.toString(),
       );
-      final status1 = response1.$1;
-      final json1 = response1.$2;
+      //final status1 = response1.$1;
+      //final json1 = response1.$2;
 
-      if (status1 != 200) {
-        final error = json1['error'];
+      if (response1.$1 != 200) {
+        final error = response1.$2['error'];
         CustomFullscreenLoader.stopLoading();
         CustomLoaders.errorSnackBar(
           title: 'Oh snap!',
@@ -100,11 +100,11 @@ class LoginController extends GetxController {
       //* verify user credentials
       final response2 = await AuthenticationRepository.instance
           .verifyCredentials(email.text.trim(), password.text.trim());
-      final status2 = response2.$1;
-      final json2 = response2.$2;
+      //final status2 = response2.$1;
+      //final json2 = response2.$2;
 
-      if (status2 != 200) {
-        final error = json2['error'];
+      if (response2.$1 != 200) {
+        final error = response2.$2['error'];
         CustomFullscreenLoader.stopLoading();
         CustomLoaders.errorSnackBar(
           title: 'Oh snap!',
@@ -114,13 +114,13 @@ class LoginController extends GetxController {
       }
       CustomLoaders.successSnackBar(
         title: 'Hooray',
-        message: json2['message'],
+        message: response2.$2['message'],
       );
 
       CustomFullscreenLoader.stopLoading();
       Get.to(
         () => VerifyPinsScreen(
-          userId: json2['userId'],
+          userId: response2.$2['userId'],
         ),
       );
     } catch (e) {

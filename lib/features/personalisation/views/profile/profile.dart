@@ -106,13 +106,10 @@ class ProfileScreen extends StatelessWidget {
                           width: double.infinity,
                           child: OutlinedButton(
                             onPressed: () async {
-                              final isUp = await ServerRepository.instance
-                                  .isServerRunning();
-                              if (isUp == false) {}
-                              final refreshToken =
-                                  await SecureStorage.getRefreshToken();
-                              AuthenticationRepository.instance
-                                  .logout(refreshToken!);
+                              // final refreshToken =
+                              //     await SecureStorage.getRefreshToken();
+                              // AuthenticationRepository.instance
+                              //     .logout(refreshToken!);
                             },
                             child: const Text(
                               'Log out',

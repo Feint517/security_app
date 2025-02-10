@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:security_app/data/repositories/authentication_repository.dart';
 import 'package:security_app/features/personalisation/controllers/user_controller.dart';
 import 'package:security_app/navigation_menu.dart';
-
 import '../../../common/styles/loaders.dart';
 import '../../../data/repositories/user_repository.dart';
 import '../../../utils/constants/animations.dart';
 import '../../../utils/helpers/network_manager.dart';
 import '../../../utils/popups/fullscreen_loader.dart';
-import '../views/profile/profile.dart';
 
 class UpdatePasswordController extends GetxController {
   static UpdatePasswordController get instance => Get.find();

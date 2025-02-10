@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:security_app/data/user/user_model.dart';
 import 'package:security_app/utils/helpers/helper_functions.dart';
 
 class ProjectDetailsPopup extends StatelessWidget {
@@ -14,6 +15,7 @@ class ProjectDetailsPopup extends StatelessWidget {
     required this.startDate,
     required this.timeline,
     required this.advancementRate,
+    required this.teamMembers,
   });
 
   final String projectId;
@@ -24,6 +26,7 @@ class ProjectDetailsPopup extends StatelessWidget {
   final String startDate;
   final String timeline;
   final int advancementRate;
+  final List<UserModel> teamMembers;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,8 @@ class ProjectDetailsPopup extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Team: ......"),
+              Text("Project ID: $projectId"),
+              Text("Project code: $projectCode"),
               Text('Budget: €${budget.toString()}'),
               Text('Timeline: $timeline'),
               Text(
@@ -59,21 +63,22 @@ class ProjectDetailsPopup extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: List.generate(
-                  2,
+                  teamMembers.length,
                   (index) {
-                    return Text("member $index");
+                    return Text(
+                        "member ${index + 1}: ${teamMembers[index].firstName} ${teamMembers[index].lastName}");
                   },
                 ),
               ),
               const SizedBox(height: 10),
 
               //* Progress Slider
-              const Text("Advancement Rate: ....."),
+              Text("Advancement Rate: $advancementRate"),
               Slider(
-                value: 20,
+                value: advancementRate.toDouble(),
                 min: 0,
                 max: 100,
-                divisions: 20,
+                divisions: 100,
                 label: '$advancementRate',
                 onChanged: (value) {},
               ),

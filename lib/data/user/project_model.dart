@@ -32,4 +32,15 @@ class ProjectModel {
       advancementRate: json['advancementRate'],
     );
   }
+
+  static ProjectModel empty() => ProjectModel(
+        projectId: '',
+        projectCode: '',
+        name: '',
+        teamId: '',
+        budget: 0,
+        startDate: '',
+        timeline: '',
+        advancementRate: 0,
+      );
 }

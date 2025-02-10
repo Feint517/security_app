@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:security_app/data/user/project_model.dart';
 import '../../utils/constants/api_constant.dart';
+import 'authentication_repository.dart';
 
 class ProjectRepository extends GetxController {
   static ProjectRepository get instance => Get.find();
@@ -101,6 +102,32 @@ class ProjectRepository extends GetxController {
       }
     } catch (e) {
       throw ('Something went wrong, please try again');
+    }
+  }
+
+  Future<(int status, dynamic response)> fetchProjectDetails(
+      {required String projectId}) async {
+    try {
+      final body = {"projectId": projectId};
+
+      final response =
+          await AuthenticationRepository.instance.authenticatedRequest(
+        endpoint: APIConstants.fetchProjectDetails,
+        method: 'POST',
+        body: body,
+      );
+      final json = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        return (response.statusCode, json as dynamic);
+      } else {
+        //throw Exception('Failed to fetch user data: ${response.body}');
+        print('Failed with status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        return (response.statusCode, json as dynamic);
+      }
+    } catch (e) {
+      print('Error: $e');
+      throw Exception('An error occurred while fetching user data');
     }
   }
 }

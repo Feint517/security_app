@@ -49,11 +49,11 @@ class HomeScreen extends StatelessWidget {
                               physics:
                                   const NeverScrollableScrollPhysics(), //? to stop the scrolling in the ListView
                               shrinkWrap: true,
-                              itemCount: controller.projects.length,
+                              itemCount: controller.projectsList.length,
                               separatorBuilder: (context, index) =>
                                   const Gap(TSizes.spaceBtwSections / 2),
                               itemBuilder: (context, index) {
-                                final project = controller.projects[index];
+                                final project = controller.projectsList[index];
                                 return ProjectTile(
                                   projectCode: project.projectCode,
                                   projectId: project.projectId,
@@ -63,20 +63,40 @@ class HomeScreen extends StatelessWidget {
                                   startDate: project.startDate,
                                   timeline: project.timeline,
                                   advancementRate: project.advancementRate,
-                                  onTap: () => Get.bottomSheet(
-                                    ProjectDetailsPopup(
-                                      projectCode: project.projectCode,
-                                      projectId: project.projectId,
-                                      name: project.name,
-                                      teamId: project.teamId,
-                                      budget: project.budget,
-                                      startDate: project.startDate,
-                                      timeline: project.timeline,
-                                      advancementRate: project.advancementRate,
-                                    ),
-                                  ),
+                                  onTap: () {
+                                    controller.fetchProjectDetails(
+                                        projectId: project.projectId);
+                                    Get.bottomSheet(
+                                      ProjectDetailsPopup(
+                                        projectCode: project.projectCode,
+                                        projectId: project.projectId,
+                                        name: project.name,
+                                        teamId: project.teamId,
+                                        budget: project.budget,
+                                        startDate: project.startDate,
+                                        timeline: project.timeline,
+                                        advancementRate:
+                                            project.advancementRate,
+                                        teamMembers:
+                                            controller.contributorsList,
+                                      ),
+                                    );
+                                  },
                                 );
                               },
+                            ),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: OutlinedButton(
+                              onPressed: () async {
+                                controller.fetchProjectDetails(
+                                    projectId: '6776eee5782c793ccfc97c10');
+                              },
+                              child: const Text(
+                                'test',
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ),
                           ),
                         ],

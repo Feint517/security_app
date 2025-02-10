@@ -32,7 +32,7 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  Future<dynamic> registerWithEmailAndPassword({
+  Future<(int status, dynamic response)> registerWithEmailAndPassword({
     required String firstName,
     required String lastName,
     required String username,
@@ -63,14 +63,15 @@ class AuthenticationRepository extends GetxController {
           throw Exception('Connection timed out. Please try again.');
         },
       );
+      final json = jsonDecode(response.body);
       if (response.statusCode == 201) {
         //*Handle success
-        final json = jsonDecode(response.body);
-        print(json);
-        return json;
+        print('json response => ${jsonDecode(response.body)}');
+        return (response.statusCode, json as dynamic);
       } else {
         print('Failed with status: ${response.statusCode}');
         print('Response body: ${response.body}');
+        return (response.statusCode, json as dynamic);
       }
     } catch (e) {
       throw ('Something went wrong, please try again');
@@ -276,7 +277,7 @@ class AuthenticationRepository extends GetxController {
         case "GET":
           response = await http.get(url, headers: headers);
           print(
-              '-------------------------RESPONSE INFO------------------------------');
+              '-------------------------AUTHENTICATED RESPONSE INFO------------------------------');
           print('status code = ${response.statusCode}');
           print('body = ${response.body}');
           break;
@@ -284,7 +285,7 @@ class AuthenticationRepository extends GetxController {
           response =
               await http.post(url, headers: headers, body: jsonEncode(body));
           print(
-              '-------------------------RESPONSE INFO------------------------------');
+              '-------------------------AUTHENTICATED RESPONSE INFO------------------------------');
           print('status code = ${response.statusCode}');
           print('body = ${response.body}');
           break;
@@ -292,14 +293,14 @@ class AuthenticationRepository extends GetxController {
           response =
               await http.put(url, headers: headers, body: jsonEncode(body));
           print(
-              '-------------------------RESPONSE INFO------------------------------');
+              '-------------------------AUTHENTICATED RESPONSE INFO------------------------------');
           print('status code = ${response.statusCode}');
           print('body = ${response.body}');
           break;
         case "DELETE":
           response = await http.delete(url, headers: headers);
           print(
-              '-------------------------RESPONSE INFO------------------------------');
+              '-------------------------AUTHENTICATED RESPONSE INFO------------------------------');
           print('status code = ${response.statusCode}');
           print('body = ${response.body}');
           break;
@@ -328,7 +329,7 @@ class AuthenticationRepository extends GetxController {
         case "GET":
           response = await http.get(url, headers: headers);
           print(
-              '-------------------------RESPONSE INFO------------------------------');
+              '-------------------------AUTHENTICATED RESPONSE INFO------------------------------');
           print('status code = ${response.statusCode}');
           print('body = ${response.body}');
           break;
@@ -336,7 +337,7 @@ class AuthenticationRepository extends GetxController {
           response =
               await http.post(url, headers: headers, body: jsonEncode(body));
           print(
-              '-------------------------RESPONSE INFO------------------------------');
+              '-------------------------AUTHENTICATED RESPONSE INFO------------------------------');
           print('status code = ${response.statusCode}');
           print('body = ${response.body}');
           break;
@@ -344,14 +345,14 @@ class AuthenticationRepository extends GetxController {
           response =
               await http.put(url, headers: headers, body: jsonEncode(body));
           print(
-              '-------------------------RESPONSE INFO------------------------------');
+              '-------------------------AUTHENTICATED RESPONSE INFO------------------------------');
           print('status code = ${response.statusCode}');
           print('body = ${response.body}');
           break;
         case "DELETE":
           response = await http.delete(url, headers: headers);
           print(
-              '-------------------------RESPONSE INFO------------------------------');
+              '-------------------------AUTHENTICATED RESPONSE INFO------------------------------');
           print('status code = ${response.statusCode}');
           print('body = ${response.body}');
           break;

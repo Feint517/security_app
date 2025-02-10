@@ -18,6 +18,7 @@ class APIConstants {
   static const String addTeamMember = '${url}teams/add-member';
   static const String fetchAllProjects = '${url}projects/fetch';
   static const String fetchProjectsByUserId = '${url}projects/user';
+  static const String fetchProjectDetails = '${url}projects/details';
   static const String updateAdvancementRate =
       '${url}projects/update-advancement-rate';
   static const String updatePassword = '${url}auth/change-password';
