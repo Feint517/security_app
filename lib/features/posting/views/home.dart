@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:security_app/common/widgets/custon_shapes/container/primary_header_container.dart';
+import 'package:security_app/features/posting/controllers/notes_controller.dart';
+import 'package:security_app/features/posting/views/project_details_scrollable.dart';
 import 'package:security_app/features/posting/views/widgets/home_appbar.dart';
 import 'package:security_app/features/posting/views/widgets/project_tile.dart';
 import 'package:security_app/utils/helpers/helper_functions.dart';
@@ -17,6 +19,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProjectsController());
+    final notesController = Get.put(NotesController('CPR2T'));
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -63,24 +66,35 @@ class HomeScreen extends StatelessWidget {
                                   startDate: project.startDate,
                                   timeline: project.timeline,
                                   advancementRate: project.advancementRate,
-                                  onTap: () {
-                                    controller.fetchProjectDetails(
-                                        projectId: project.projectId);
-                                    Get.bottomSheet(
-                                      ProjectDetailsPopup(
-                                        projectCode: project.projectCode,
-                                        projectId: project.projectId,
-                                        name: project.name,
-                                        teamId: project.teamId,
-                                        budget: project.budget,
-                                        startDate: project.startDate,
-                                        timeline: project.timeline,
-                                        advancementRate:
-                                            project.advancementRate,
-                                        teamMembers:
-                                            controller.contributorsList,
+                                  onTap: () async {
+                                    final projectData =
+                                        await controller.fetchProjectDetails(
+                                      projectCode: project.projectCode,
+                                    );
+                                    notesController.fetchNotes(
+                                        projectCode: project.projectCode);
+                                    Get.to(
+                                      () => ProjectDetailsScrollable(
+                                        projectData: projectData['project'],
                                       ),
                                     );
+                                    // controller.fetchProjectDetails(
+                                    //     projectId: project.projectId);
+                                    // Get.bottomSheet(
+                                    //   ProjectDetailsPopup(
+                                    //     projectCode: project.projectCode,
+                                    //     projectId: project.projectId,
+                                    //     name: project.name,
+                                    //     teamId: project.teamId,
+                                    //     budget: project.budget,
+                                    //     startDate: project.startDate,
+                                    //     timeline: project.timeline,
+                                    //     advancementRate:
+                                    //         project.advancementRate,
+                                    //     teamMembers:
+                                    //         controller.contributorsList,
+                                    //   ),
+                                    // );
                                   },
                                 );
                               },
@@ -90,8 +104,12 @@ class HomeScreen extends StatelessWidget {
                             width: double.infinity,
                             child: OutlinedButton(
                               onPressed: () async {
+                                // controller.fetchProjectDetails(
+                                //   projectId: '6776eee5782c793ccfc97c10',
+                                // );
+                                //notesController.fetchNotes();
                                 controller.fetchProjectDetails(
-                                    projectId: '6776eee5782c793ccfc97c10');
+                                    projectCode: 'CPR2T');
                               },
                               child: const Text(
                                 'test',
