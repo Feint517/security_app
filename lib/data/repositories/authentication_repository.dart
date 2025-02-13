@@ -298,7 +298,8 @@ class AuthenticationRepository extends GetxController {
           print('body = ${response.body}');
           break;
         case "DELETE":
-          response = await http.delete(url, headers: headers);
+          response =
+              await http.delete(url, headers: headers, body: jsonEncode(body));
           print(
               '-------------------------AUTHENTICATED RESPONSE INFO------------------------------');
           print('status code = ${response.statusCode}');
@@ -350,7 +351,8 @@ class AuthenticationRepository extends GetxController {
           print('body = ${response.body}');
           break;
         case "DELETE":
-          response = await http.delete(url, headers: headers);
+          response =
+              await http.delete(url, headers: headers, body: jsonEncode(body));
           print(
               '-------------------------AUTHENTICATED RESPONSE INFO------------------------------');
           print('status code = ${response.statusCode}');

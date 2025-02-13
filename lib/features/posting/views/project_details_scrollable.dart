@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:security_app/data/services/secure_storage.dart';
 import 'widgets/notes_section.dart';
 
 class ProjectDetailsScrollable extends StatelessWidget {
@@ -68,6 +69,8 @@ class ProjectDetailsScrollable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final date1 = DateTime.parse(projectData['timeline']);
+    final date2 = DateTime.parse(projectData['startDate']);
     return Scaffold(
       appBar: AppBar(title: Text(projectData['name'] ?? "Project Details")),
       body: SingleChildScrollView(
@@ -78,8 +81,8 @@ class ProjectDetailsScrollable extends StatelessWidget {
             _buildSectionTitle("Project Info"),
             Text("Project code: ${projectData['projectCode']}"),
             Text("Budget: \$${projectData['budget']}"),
-            Text("Timeline: ${projectData['timeline']}"),
-            Text("Start Date: ${projectData['startDate']}"),
+            Text("Timeline: ${DateFormat('yMMMd').format(date1)}"),
+            Text("Start Date: ${DateFormat('yMMMd').format(date2)}"),
             Text("Advancement Rate: ${projectData['advancementRate']}%"),
             const Gap(16),
             _buildSectionTitle("Team Members"),

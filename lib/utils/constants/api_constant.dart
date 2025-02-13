@@ -20,6 +20,7 @@ class APIConstants {
   static const String fetchProjectsByUserId = '${url}projects/user';
   static const String fetchProjectDetails = '${url}projects/details';
   static const String addNote = '${url}projects/add-note';
+  static const String deleteNode = '${url}projects/delete-note';
   static const String updateAdvancementRate =
       '${url}projects/update-advancement-rate';
   static const String updatePassword = '${url}auth/change-password';

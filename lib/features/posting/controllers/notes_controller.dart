@@ -4,16 +4,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:security_app/data/repositories/authentication_repository.dart';
+import 'package:security_app/data/services/secure_storage.dart';
 import '../../../utils/constants/api_constant.dart';
 
 class NotesController extends GetxController {
   final String projectCode;
   NotesController(this.projectCode);
 
-  // @override
-  // void onReady() async {
-  //   await fetchNotes();
-  // }
+  String? loggedInUserId;
+
+  @override
+  void onReady() async {
+    loggedInUserId = await SecureStorage.getUserId();
+  }
 
   var notes = <Map<String, dynamic>>[].obs;
   var isPosting = false.obs;
@@ -22,9 +25,6 @@ class NotesController extends GetxController {
   Future<void> fetchNotes({required String projectCode}) async {
     try {
       final body = {"projectCode": projectCode};
-      // print('---------------------------------------');
-      // print('project code = $projectCode');
-      // print('---------------------------------------');
       final response =
           await AuthenticationRepository.instance.authenticatedRequest(
         endpoint: APIConstants.fetchProjectDetails,
@@ -67,7 +67,7 @@ class NotesController extends GetxController {
 
       if (response.statusCode == 201) {
         noteController.clear();
-        fetchNotes(projectCode: projectCode); // Refresh the list after posting
+        fetchNotes(projectCode: projectCode); //? Refresh the list after posting
       } else {
         Get.snackbar("Error", "Failed to post note");
       }
@@ -75,6 +75,32 @@ class NotesController extends GetxController {
       print("Error posting note: $e");
     } finally {
       isPosting.value = false;
+    }
+  }
+
+  Future<void> deleteNote(String noteId) async {
+    try {
+      final body = {
+        "projectCode": projectCode,
+        "noteId": noteId,
+      };
+
+      final response =
+          await AuthenticationRepository.instance.authenticatedRequest(
+        endpoint: APIConstants.deleteNode,
+        method: 'delete',
+        body: body,
+      );
+
+      if (response.statusCode == 200) {
+        //* Remove the note from the list
+        notes.removeWhere((note) => note['_id'] == noteId);
+        Get.snackbar("Success", "Note deleted successfully");
+      } else {
+        Get.snackbar("Error", "Failed to delete note");
+      }
+    } catch (e) {
+      print("Error deleting note: $e");
     }
   }
 }

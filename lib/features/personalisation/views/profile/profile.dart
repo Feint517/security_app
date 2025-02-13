@@ -106,10 +106,37 @@ class ProfileScreen extends StatelessWidget {
                           width: double.infinity,
                           child: OutlinedButton(
                             onPressed: () async {
-                              // final refreshToken =
-                              //     await SecureStorage.getRefreshToken();
-                              // AuthenticationRepository.instance
-                              //     .logout(refreshToken!);
+                              final confirm = await showDialog<bool>(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: const Text("Confirm Logout"),
+                                  content: const Text(
+                                    "Are you sure you want to logout?",
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(false),
+                                      child: const Text("Cancel"),
+                                    ),
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(true),
+                                      child: const Text(
+                                        "Yes",
+                                        style: TextStyle(color: Colors.red),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+
+                              if (confirm == true) {
+                                final refreshToken =
+                                    await SecureStorage.getRefreshToken();
+                                AuthenticationRepository.instance
+                                    .logout(refreshToken!);
+                              }
                             },
                             child: const Text(
                               'Log out',
