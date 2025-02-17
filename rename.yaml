@@ -1,0 +1,4 @@
+package_rename_config:
+  android:
+    app_name: Lab Research
+    package_name: arselene.ubma.labresearch

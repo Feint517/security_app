@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:security_app/data/repositories/authentication_repository.dart';
@@ -23,7 +22,6 @@ class ProjectsController extends GetxController {
   var notes = <Map<String, dynamic>>[].obs;
   var isPosting = false.obs;
   final noteController = TextEditingController();
-  //List<UserModel> contributorsList = <UserModel>[];
 
   void fetchAvailableProjects() async {
     try {
@@ -61,11 +59,6 @@ class ProjectsController extends GetxController {
         print(jsonResponse);
         return jsonResponse;
 
-        //* generate a list of notes
-        // notes.value =
-        //     List<Map<String, dynamic>>.from(jsonResponse["project"]["notes"]);
-        // notes.sort((a, b) => DateTime.parse(b['createdAt'])
-        //     .compareTo(DateTime.parse(a['createdAt'])));
       } else {
         Get.snackbar("Error", "Failed to load notes");
         return jsonResponse;
@@ -75,60 +68,4 @@ class ProjectsController extends GetxController {
       return {"error": "Failed to load project details"};
     }
   }
-
-  // Future<void> fetchNotes() async {
-  //   try {
-  //     final body = {"projectCode": projectCode};
-  //     final response =
-  //         await AuthenticationRepository.instance.authenticatedRequest(
-  //       endpoint: APIConstants.fetchProjectDetails,
-  //       method: 'post',
-  //       body: body,
-  //     );
-
-  //     if (response.statusCode == 200) {
-  //       final jsonResponse = jsonDecode(response.body);
-  //       notes.value =
-  //           List<Map<String, dynamic>>.from(jsonResponse["project"]["notes"]);
-  //       notes.sort((a, b) => DateTime.parse(b['createdAt'])
-  //           .compareTo(DateTime.parse(a['createdAt'])));
-  //       print(notes[0]);
-  //     } else {
-  //       Get.snackbar("Error", "Failed to load notes");
-  //     }
-  //   } catch (e) {
-  //     print("Error fetching notes: $e");
-  //   }
-  // }
-
-  // Future<void> postNote() async {
-  //   final content = noteController.text.trim();
-  //   if (content.isEmpty) return;
-
-  //   isPosting.value = true;
-
-  //   try {
-  //     final body = {
-  //       "projectCode": projectCode,
-  //       "content": content,
-  //     };
-  //     final response =
-  //         await AuthenticationRepository.instance.authenticatedRequest(
-  //       endpoint: APIConstants.addNote,
-  //       method: 'post',
-  //       body: body,
-  //     );
-
-  //     if (response.statusCode == 201) {
-  //       noteController.clear();
-  //       fetchNotes(); // Refresh the list after posting
-  //     } else {
-  //       Get.snackbar("Error", "Failed to post note");
-  //     }
-  //   } catch (e) {
-  //     print("Error posting note: $e");
-  //   } finally {
-  //     isPosting.value = false;
-  //   }
-  // }
 }

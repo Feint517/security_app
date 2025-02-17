@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:security_app/data/repositories/server_repository.dart';
-import 'package:security_app/data/repositories/user_repository.dart';
 import 'package:security_app/data/services/secure_storage.dart';
 import 'package:security_app/features/personalisation/views/profile/change_password.dart';
 import 'package:security_app/utils/helpers/helper_functions.dart';
@@ -41,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
                           .apply(color: TColors.white),
                     ),
                   ),
-                  const Gap(TSizes.spaceBtwSections),
+                  //const Gap(TSizes.spaceBtwSections),
 
                   //* user profile card
                   UserProfileTile(
@@ -90,13 +88,6 @@ class ProfileScreen extends StatelessWidget {
                           subtitle: 'Click to change',
                           onTap: () =>
                               Get.to(() => const ChangePasswordScreen()),
-                        ),
-                        //* app Setting
-                        const Gap(TSizes.spaceBtwSections),
-                        const CustomSectionHeading(
-                          title: "App setting",
-                          textColor: Colors.white,
-                          showActionButton: false,
                         ),
 
                         const Gap(TSizes.spaceBtwItems),

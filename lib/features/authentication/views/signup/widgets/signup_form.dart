@@ -6,9 +6,6 @@ import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/validators/validators.dart';
 import '../../../controllers/signup/signup_controller.dart';
-import '../../../controllers/signup/team_select_controller.dart';
-import '../team_select.dart';
-
 class SignupForm extends StatelessWidget {
   const SignupForm({
     super.key,

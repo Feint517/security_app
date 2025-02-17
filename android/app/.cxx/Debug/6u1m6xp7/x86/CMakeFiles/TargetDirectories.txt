@@ -1,0 +1,2 @@
+/Users/arselene/projects/flutter/security_app/android/app/.cxx/Debug/6u1m6xp7/x86/CMakeFiles/edit_cache.dir
+/Users/arselene/projects/flutter/security_app/android/app/.cxx/Debug/6u1m6xp7/x86/CMakeFiles/rebuild_cache.dir

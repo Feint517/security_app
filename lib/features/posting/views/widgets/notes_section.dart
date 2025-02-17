@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:security_app/utils/constants/colors.dart';
 
 import '../../controllers/notes_controller.dart';
 
@@ -18,38 +19,6 @@ class NotesSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        //* Notes List
-        // Obx(
-        //   () => Column(
-        //     crossAxisAlignment: CrossAxisAlignment.start,
-        //     children: controller.notes.map((note) {
-        //       final authorName =
-        //           "${note['user']['firstName']} ${note['user']['lastName']}";
-        //       final content = note['content'];
-        //       final createdAt = note['createdAt'];
-
-        //       //* Format the createdAt date
-        //       final date = DateTime.parse(createdAt);
-        //       final formattedDate = DateFormat('yMMMd').add_jm().format(date);
-
-        //       return Card(
-        //         child: ListTile(
-        //           leading: const Icon(Icons.note),
-        //           title: Text(content,
-        //               style: const TextStyle(fontWeight: FontWeight.bold)),
-        //           subtitle: Column(
-        //             crossAxisAlignment: CrossAxisAlignment.start,
-        //             children: [
-        //               Text("By: $authorName"),
-        //               Text("Date: $formattedDate",
-        //                   style: const TextStyle(fontSize: 12)),
-        //             ],
-        //           ),
-        //         ),
-        //       );
-        //     }).toList(),
-        //   ),
-        // ),
         Obx(
           () => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,19 +36,34 @@ class NotesSection extends StatelessWidget {
                 final formattedDate = DateFormat('yMMMd').add_jm().format(date);
 
                 return Card(
+                  color: TColors.primary,
                   child: ListTile(
-                    leading: const Icon(Icons.note),
+                    leading: const Icon(
+                      Icons.note,
+                      color: TColors.white,
+                    ),
                     title: Text(
                       content,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: TColors.white,
+                      ),
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("By: $authorName"),
+                        Text(
+                          "By: $authorName",
+                          style: const TextStyle(
+                            color: TColors.black,
+                          ),
+                        ),
                         Text(
                           "Date: $formattedDate",
-                          style: const TextStyle(fontSize: 12),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: TColors.black,
+                          ),
                         ),
                       ],
                     ),
@@ -118,38 +102,6 @@ class NotesSection extends StatelessWidget {
                             },
                           )
                         : null,
-                    // trailing: IconButton(
-                    //   icon: const Icon(Icons.delete, color: Colors.red),
-                    //   onPressed: () async {
-                    //     //* Confirm Deletion
-                    //     final confirm = await showDialog<bool>(
-                    //       context: context,
-                    //       builder: (context) => AlertDialog(
-                    //         title: const Text("Confirm Delete"),
-                    //         content: const Text(
-                    //           "Are you sure you want to delete this note?",
-                    //         ),
-                    //         actions: [
-                    //           TextButton(
-                    //             onPressed: () => Navigator.of(context).pop(false),
-                    //             child: const Text("Cancel"),
-                    //           ),
-                    //           TextButton(
-                    //             onPressed: () => Navigator.of(context).pop(true),
-                    //             child: const Text(
-                    //               "Delete",
-                    //               style: TextStyle(color: Colors.red),
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     );
-
-                    //     if (confirm == true) {
-                    //       controller.deleteNote(noteId);
-                    //     }
-                    //   },
-                    // ),
                   ),
                 );
               },
@@ -167,19 +119,23 @@ class NotesSection extends StatelessWidget {
                 OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
           ),
         ),
-        const SizedBox(height: 8.0),
+        const Gap(10),
         //* Submit Button
         Center(
           child: Obx(
-            () => ElevatedButton.icon(
-              onPressed:
-                  controller.isPosting.value ? null : controller.postNote,
-              icon: controller.isPosting.value
-                  ? const CircularProgressIndicator()
-                  : const Icon(
-                      Icons.send,
-                    ),
-              label: const Text("Post Note"),
+            () => SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed:
+                    controller.isPosting.value ? null : controller.postNote,
+                icon: controller.isPosting.value
+                    ? const CircularProgressIndicator()
+                    : const Icon(
+                        Icons.send,
+                        color: TColors.secondary,
+                      ),
+                label: const Text("Post Note"),
+              ),
             ),
           ),
         ),

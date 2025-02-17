@@ -9,9 +9,9 @@ import 'package:security_app/features/posting/views/project_details_scrollable.d
 import 'package:security_app/features/posting/views/widgets/home_appbar.dart';
 import 'package:security_app/features/posting/views/widgets/project_tile.dart';
 import 'package:security_app/utils/helpers/helper_functions.dart';
+import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 import '../controllers/projects_controller.dart';
-import 'widgets/project_popup.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -43,8 +43,11 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(
                             width: double.infinity,
                             child: Text(
-                              'Projects list:',
-                              style: Theme.of(context).textTheme.headlineMedium,
+                              'Projects list',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineMedium!
+                                  .apply(color: TColors.white),
                             ),
                           ),
                           Obx(
@@ -78,43 +81,9 @@ class HomeScreen extends StatelessWidget {
                                         projectData: projectData['project'],
                                       ),
                                     );
-                                    // controller.fetchProjectDetails(
-                                    //     projectId: project.projectId);
-                                    // Get.bottomSheet(
-                                    //   ProjectDetailsPopup(
-                                    //     projectCode: project.projectCode,
-                                    //     projectId: project.projectId,
-                                    //     name: project.name,
-                                    //     teamId: project.teamId,
-                                    //     budget: project.budget,
-                                    //     startDate: project.startDate,
-                                    //     timeline: project.timeline,
-                                    //     advancementRate:
-                                    //         project.advancementRate,
-                                    //     teamMembers:
-                                    //         controller.contributorsList,
-                                    //   ),
-                                    // );
                                   },
                                 );
                               },
-                            ),
-                          ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: OutlinedButton(
-                              onPressed: () async {
-                                // controller.fetchProjectDetails(
-                                //   projectId: '6776eee5782c793ccfc97c10',
-                                // );
-                                //notesController.fetchNotes();
-                                controller.fetchProjectDetails(
-                                    projectCode: 'CPR2T');
-                              },
-                              child: const Text(
-                                'test',
-                                style: TextStyle(color: Colors.white),
-                              ),
                             ),
                           ),
                         ],

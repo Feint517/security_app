@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:security_app/common/styles/loaders.dart';
 import 'package:security_app/data/repositories/authentication_repository.dart';
 import 'package:security_app/data/services/secure_storage.dart';
 import '../../../utils/constants/api_constant.dart';
@@ -40,7 +41,11 @@ class NotesController extends GetxController {
             .compareTo(DateTime.parse(a['createdAt'])));
         print(notes[0]);
       } else {
-        Get.snackbar("Error", "Failed to load notes");
+        //Get.snackbar("Error", "Failed to load notes");
+        CustomLoaders.errorSnackBar(
+          title: 'Error!',
+          message: 'Failed to poste note.',
+        );
       }
     } catch (e) {
       print("Error fetching notes: $e");
@@ -69,7 +74,11 @@ class NotesController extends GetxController {
         noteController.clear();
         fetchNotes(projectCode: projectCode); //? Refresh the list after posting
       } else {
-        Get.snackbar("Error", "Failed to post note");
+        CustomLoaders.errorSnackBar(
+          title: 'Error!',
+          message: 'Failed to poste note.',
+        );
+        //Get.snackbar("Error", "Failed to post note");
       }
     } catch (e) {
       print("Error posting note: $e");
@@ -95,9 +104,17 @@ class NotesController extends GetxController {
       if (response.statusCode == 200) {
         //* Remove the note from the list
         notes.removeWhere((note) => note['_id'] == noteId);
-        Get.snackbar("Success", "Note deleted successfully");
+        //Get.snackbar("Success", "Note deleted successfully");
+        CustomLoaders.successSnackBar(
+          title: 'Success!',
+          message: 'Note deleted successfully',
+        );
       } else {
-        Get.snackbar("Error", "Failed to delete note");
+        //Get.snackbar("Error", "Failed to delete note");
+        CustomLoaders.errorSnackBar(
+          title: 'Error!',
+          message: 'Failed to poste note.',
+        );
       }
     } catch (e) {
       print("Error deleting note: $e");
