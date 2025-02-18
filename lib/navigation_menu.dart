@@ -13,13 +13,13 @@ class NavigationMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
-    final dark = THelperFunctions.isDarkMode(context);
+    final dark = CustomHelperFunctions.isDarkMode(context);
 
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
         height: 60,
-        color: dark ? TColors.black : TColors.white,
-        backgroundColor: TColors.primary,
+        color: dark ? CustomColors.black : CustomColors.white,
+        backgroundColor: CustomColors.primary,
         items: const [
           Icon(Icons.home, size: 30),
           Icon(Icons.person, size: 30),

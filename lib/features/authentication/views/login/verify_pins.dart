@@ -22,19 +22,19 @@ class VerifyPinsScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(TSizes.defaultSpace),
+          padding: const EdgeInsets.all(CustomSizes.defaultSpace),
           child: Column(
             children: [
               //* title
               Text(
-                TTexts.enterPins,
+                CustomTexts.enterPins,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
-              const Gap(TSizes.spaceBtwSections),
+              const Gap(CustomSizes.spaceBtwSections),
 
               //* form
               VerifyPinsForm(userId: userId),
-              const Gap(TSizes.spaceBtwSections),
+              const Gap(CustomSizes.spaceBtwSections),
             ],
           ),
         ),

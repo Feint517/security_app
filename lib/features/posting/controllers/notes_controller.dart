@@ -41,7 +41,6 @@ class NotesController extends GetxController {
             .compareTo(DateTime.parse(a['createdAt'])));
         print(notes[0]);
       } else {
-        //Get.snackbar("Error", "Failed to load notes");
         CustomLoaders.errorSnackBar(
           title: 'Error!',
           message: 'Failed to poste note.',
@@ -78,7 +77,6 @@ class NotesController extends GetxController {
           title: 'Error!',
           message: 'Failed to poste note.',
         );
-        //Get.snackbar("Error", "Failed to post note");
       }
     } catch (e) {
       print("Error posting note: $e");
@@ -104,13 +102,11 @@ class NotesController extends GetxController {
       if (response.statusCode == 200) {
         //* Remove the note from the list
         notes.removeWhere((note) => note['_id'] == noteId);
-        //Get.snackbar("Success", "Note deleted successfully");
         CustomLoaders.successSnackBar(
           title: 'Success!',
           message: 'Note deleted successfully',
         );
       } else {
-        //Get.snackbar("Error", "Failed to delete note");
         CustomLoaders.errorSnackBar(
           title: 'Error!',
           message: 'Failed to poste note.',

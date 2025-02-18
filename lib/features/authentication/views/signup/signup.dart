@@ -17,20 +17,20 @@ class SignupScreen extends StatelessWidget {
       //? to make things scrollable on smaller devices
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(TSizes.defaultSpace),
+          padding: const EdgeInsets.all(CustomSizes.defaultSpace),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //* title
               Text(
-                TTexts.signUpTitile,
+                CustomTexts.signUpTitile,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
-              const Gap(TSizes.spaceBtwSections),
+              const Gap(CustomSizes.spaceBtwSections),
 
               //* form
               const SignupForm(),
-              const Gap(TSizes.spaceBtwSections),
+              const Gap(CustomSizes.spaceBtwSections),
             ],
           ),
         ),

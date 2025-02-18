@@ -17,8 +17,8 @@ class CustomPrimaryHeaderContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height, //! this is not the right solution
-      color: TColors.primary,
+      height: height,
+      color: CustomColors.primary,
       padding: const EdgeInsets.all(0),
       child: Stack(
         children: [
@@ -26,14 +26,14 @@ class CustomPrimaryHeaderContainer extends StatelessWidget {
             top: -150,
             right: -250,
             child: CustomCircularContainer(
-              backgroundColor: TColors.white.withOpacity(0.1),
+              backgroundColor: CustomColors.white.withOpacity(0.1),
             ),
           ),
           Positioned(
             top: 100,
             right: -300,
             child: CustomCircularContainer(
-              backgroundColor: TColors.white.withOpacity(0.1),
+              backgroundColor: CustomColors.white.withOpacity(0.1),
             ),
           ),
           child,

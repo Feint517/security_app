@@ -18,14 +18,8 @@ class VerifyPinsController extends GetxController {
       //* start loading
       CustomFullscreenLoader.openLoadingDialog(
         'Logging in...',
-        TAnimations.check,
+        CustomAnimations.check,
       );
-
-      //* form validation
-      // if (!verifyPinsFormKey.currentState!.validate()) {
-      //   CustomFullscreenLoader.stopLoading();
-      //   return;
-      // }
 
       //* verify pins
       final response = await AuthenticationRepository.instance
@@ -43,20 +37,6 @@ class VerifyPinsController extends GetxController {
         );
         return;
       }
-      //* save tokens to local storage
-      // if (LoginController.instance.rememberMe.value) {
-      //   await SecureStorage.saveTokens(
-      //     accessToken: json['accessToken'],
-      //     refreshToken: json['refreshToken'],
-      //   );
-      // }
-      // if (LoginController.instance.rememberMe.value) {
-      //   await SecureStorage.saveTokensAndId(
-      //     userId: json['userId'],
-      //     accessToken: json['accessToken'],
-      //     refreshToken: json['refreshToken'],
-      //   );
-      // }
 
       await SecureStorage.saveTokensAndId(
           userId: json['userId'],

@@ -91,7 +91,6 @@ class TeamRepository extends GetxController {
             .toList();
 
         print('Number of members found = ${members.length}');
-        //print(members[0].username);
 
         return members;
       } else {

@@ -27,9 +27,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
+    final dark = CustomHelperFunctions.isDarkMode(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: TSizes.md),
+      padding: const EdgeInsets.symmetric(horizontal: CustomSizes.md),
       child: AppBar(
         automaticallyImplyLeading: false,
         leading: showBackArrow
@@ -37,7 +37,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 onPressed: () => Get.back(),
                 icon: Icon(
                   Iconsax.arrow_left,
-                  color: dark ? TColors.white : TColors.black,
+                  color: dark ? CustomColors.white : CustomColors.black,
                 ),
               )
             : leadingIcon != null
@@ -53,5 +53,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(TDeviceUtils.getAppBarHeight());
+  Size get preferredSize => Size.fromHeight(CustomDeviceUtils.getAppBarHeight());
 }

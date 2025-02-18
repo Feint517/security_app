@@ -19,16 +19,13 @@ class HomeAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            TTexts.homeAppbarTitle,
+            CustomTexts.homeAppbarTitle,
             style: Theme.of(context)
                 .textTheme
                 .labelMedium!
-                .apply(color: TColors.white),
+                .apply(color: CustomColors.white),
           ),
           Obx(
-            //? the reason to wrap it with Obx is that the user details don't arrive immediately,
-            //? but arrives after some milliseconds, so we need to refresh the widget as soon as
-            //? the user information arrive
             () {
               if (controller.profileLoading.value) {
                 //* display a shimmer loader while user profile is being loaded
@@ -39,18 +36,12 @@ class HomeAppBar extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headlineSmall!
-                    .apply(color: TColors.white),
+                    .apply(color: CustomColors.white),
               );
             },
           ),
         ],
       ),
-      // actions: [
-      //   IconButton(
-      //     onPressed: () => Get.to(() => const SettingsScreen()),
-      //     icon: const Icon(Icons.settings),
-      //   )
-      // ],
     );
   }
 }

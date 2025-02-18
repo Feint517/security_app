@@ -14,9 +14,9 @@ class CustomFullscreenLoader {
       builder: (_) => PopScope(
         canPop: false,
         child: Container(
-          color: THelperFunctions.isDarkMode(Get.context!)
-              ? TColors.black
-              : TColors.white,
+          color: CustomHelperFunctions.isDarkMode(Get.context!)
+              ? CustomColors.black
+              : CustomColors.white,
           width: double.infinity,
           height: double.infinity,
           child: Column(

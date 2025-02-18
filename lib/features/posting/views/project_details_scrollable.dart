@@ -89,7 +89,7 @@ class ProjectDetailsScrollable extends StatelessWidget {
         return ListTile(
           leading: const Icon(
             Icons.person,
-            color: TColors.primary,
+            color: CustomColors.primary,
           ),
           title: Text(fullName,
               style: const TextStyle(fontWeight: FontWeight.bold)),

@@ -51,7 +51,6 @@ class UserRepository extends GetxController {
             '----------------------Password changed Successfully----------------------');
         return (response.statusCode, json as dynamic);
       } else {
-        //throw Exception('Failed to update user password: ${response.body}');
         print('Failed with status: ${response.statusCode}');
         print('Response body: ${response.body}');
         return (response.statusCode, json as dynamic);

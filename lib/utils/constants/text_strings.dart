@@ -1,4 +1,4 @@
-class TTexts {
+class CustomTexts {
   //* on boarding text
   static const String onBoardingTitle1 = "Welcome to 'codeName-prject-med'";
   static const String onBoardingTitle2 = "Hassle-free experience";

@@ -31,7 +31,7 @@ class ProjectDetailsPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: THelperFunctions.screenHeight() * 0.7,
+      height: CustomHelperFunctions.screenHeight() * 0.7,
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -85,7 +85,6 @@ class ProjectDetailsPopup extends StatelessWidget {
 
               //* Notes TextField
               TextFormField(
-                //controller: notesController,
                 decoration: const InputDecoration(labelText: "Notes"),
                 maxLines: 2,
               ),

@@ -16,7 +16,7 @@ class SignupForm extends StatelessWidget {
     final controller = Get.put(SignupController());
     
     return Form(
-      key: controller.signupFormKey, //? assign the key to the form
+      key: controller.signupFormKey,
       child: Column(
         children: [
           Row(
@@ -25,88 +25,87 @@ class SignupForm extends StatelessWidget {
                 child: TextFormField(
                   controller: controller.firstName,
                   validator: (value) =>
-                      TValidator.validateEmptyText('First name', value),
+                      CustomValidator.validateEmptyText('First name', value),
                   expands: false,
                   decoration: const InputDecoration(
-                    labelText: TTexts.firstName,
+                    labelText: CustomTexts.firstName,
                     prefixIcon: Icon(Iconsax.user),
                   ),
                 ),
               ),
-              const Gap(TSizes.spaceBtwInputFields),
+              const Gap(CustomSizes.spaceBtwInputFields),
               Expanded(
                 child: TextFormField(
                   controller: controller.lastName,
                   validator: (value) =>
-                      TValidator.validateEmptyText('Last name', value),
+                      CustomValidator.validateEmptyText('Last name', value),
                   expands: false,
                   decoration: const InputDecoration(
-                    labelText: TTexts.lastName,
+                    labelText: CustomTexts.lastName,
                     prefixIcon: Icon(Iconsax.user),
                   ),
                 ),
               ),
             ],
           ),
-          const Gap(TSizes.spaceBtwInputFields),
+          const Gap(CustomSizes.spaceBtwInputFields),
 
           //* username
           TextFormField(
             controller: controller.userName,
             validator: (value) =>
-                TValidator.validateEmptyText('Username', value),
+                CustomValidator.validateEmptyText('Username', value),
             expands: false,
             decoration: const InputDecoration(
-              labelText: TTexts.username,
+              labelText: CustomTexts.username,
               prefixIcon: Icon(Iconsax.user_edit),
             ),
           ),
-          const Gap(TSizes.spaceBtwInputFields),
+          const Gap(CustomSizes.spaceBtwInputFields),
 
           //* activity
           TextFormField(
             controller: controller.activity,
             validator: (value) =>
-                TValidator.validateEmptyText('Username', value),
+                CustomValidator.validateEmptyText('Username', value),
             expands: false,
             decoration: const InputDecoration(
-              labelText: TTexts.activity,
+              labelText: CustomTexts.activity,
               prefixIcon: Icon(Iconsax.hashtag_down),
             ),
           ),
-          const Gap(TSizes.spaceBtwInputFields),
+          const Gap(CustomSizes.spaceBtwInputFields),
 
           //* email
           TextFormField(
             controller: controller.email,
-            validator: (value) => TValidator.validateEmail(value),
+            validator: (value) => CustomValidator.validateEmail(value),
             decoration: const InputDecoration(
-              labelText: TTexts.email,
+              labelText: CustomTexts.email,
               prefixIcon: Icon(Iconsax.direct),
             ),
           ),
-          const Gap(TSizes.spaceBtwInputFields),
+          const Gap(CustomSizes.spaceBtwInputFields),
 
           //* phone number
           TextFormField(
             controller: controller.phoneNumber,
-            validator: (value) => TValidator.validatePhoneNumber(value),
+            validator: (value) => CustomValidator.validatePhoneNumber(value),
             decoration: const InputDecoration(
-              labelText: TTexts.phoneNumber,
+              labelText: CustomTexts.phoneNumber,
               prefixIcon: Icon(Iconsax.call),
             ),
           ),
-          const Gap(TSizes.spaceBtwInputFields),
+          const Gap(CustomSizes.spaceBtwInputFields),
 
           //* password
           Obx(
-            //? wrap it with observer to redraw the widget on change
             () => TextFormField(
               controller: controller.password,
-              validator: (value) => TValidator.validatePassword(value),
+              validator: (value) => CustomValidator.validatePassword(value),
               obscureText: controller.hidePassword.value,
               decoration: InputDecoration(
-                labelText: TTexts.password,
+                labelText: CustomTexts.password,
                 prefixIcon: const Icon(Iconsax.password_check),
                 suffixIcon: IconButton(
                   onPressed: () => controller.hidePassword.value =
@@ -120,7 +119,7 @@ class SignupForm extends StatelessWidget {
               ),
             ),
           ),
-          const Gap(TSizes.spaceBtwInputFields),
+          const Gap(CustomSizes.spaceBtwInputFields),
 
           //* sign up button
           SizedBox(
@@ -130,10 +129,10 @@ class SignupForm extends StatelessWidget {
                 await controller.signup();
                 
               },
-              child: const Text(TTexts.createAccount),
+              child: const Text(CustomTexts.createAccount),
             ),
           ),
-          const Gap(TSizes.spaceBtwInputFields),
+          const Gap(CustomSizes.spaceBtwInputFields),
         ],
       ),
     );

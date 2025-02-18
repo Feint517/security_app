@@ -36,17 +36,17 @@ class NotesSection extends StatelessWidget {
                 final formattedDate = DateFormat('yMMMd').add_jm().format(date);
 
                 return Card(
-                  color: TColors.primary,
+                  color: CustomColors.primary,
                   child: ListTile(
                     leading: const Icon(
                       Icons.note,
-                      color: TColors.white,
+                      color: CustomColors.white,
                     ),
                     title: Text(
                       content,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: TColors.white,
+                        color: CustomColors.white,
                       ),
                     ),
                     subtitle: Column(
@@ -55,14 +55,14 @@ class NotesSection extends StatelessWidget {
                         Text(
                           "By: $authorName",
                           style: const TextStyle(
-                            color: TColors.black,
+                            color: CustomColors.black,
                           ),
                         ),
                         Text(
                           "Date: $formattedDate",
                           style: const TextStyle(
                             fontSize: 12,
-                            color: TColors.black,
+                            color: CustomColors.black,
                           ),
                         ),
                       ],
@@ -132,7 +132,7 @@ class NotesSection extends StatelessWidget {
                     ? const CircularProgressIndicator()
                     : const Icon(
                         Icons.send,
-                        color: TColors.secondary,
+                        color: CustomColors.secondary,
                       ),
                 label: const Text("Post Note"),
               ),

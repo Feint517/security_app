@@ -13,13 +13,13 @@ class FormDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
+    final dark = CustomHelperFunctions.isDarkMode(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Flexible(
           child: Divider(
-            color: dark ? TColors.darkGrey : TColors.grey,
+            color: dark ? CustomColors.darkGrey : CustomColors.grey,
             thickness: 0.5,
             indent: 60,
             endIndent: 5,
@@ -31,7 +31,7 @@ class FormDivider extends StatelessWidget {
         ),
         Flexible(
           child: Divider(
-            color: dark ? TColors.darkGrey : TColors.grey,
+            color: dark ? CustomColors.darkGrey : CustomColors.grey,
             thickness: 0.5,
             indent: 5,
             endIndent: 60,

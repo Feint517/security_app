@@ -17,17 +17,13 @@ class LoginHeader extends StatelessWidget {
       children: [
         const Image(
           height: 200,
-          image: AssetImage(TImages.appLogo),
+          image: AssetImage(CustomImages.appLogo),
         ),
         Text(
-          TTexts.loginTitle,
+          CustomTexts.loginTitle,
           style: Theme.of(context).textTheme.headlineMedium,
         ),
-        const Gap(TSizes.sm),
-        // Text(
-        //   TTexts.loginSubtitle,
-        //   style: Theme.of(context).textTheme.bodyMedium,
-        // ),
+        const Gap(CustomSizes.sm),
       ],
     );
   }

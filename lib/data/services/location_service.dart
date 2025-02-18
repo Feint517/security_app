@@ -45,7 +45,6 @@ class LocationService extends GetxController {
     print('Getting current position...');
     Position position = await Geolocator.getCurrentPosition(
       locationSettings: AndroidSettings(accuracy: LocationAccuracy.best),
-      //desiredAccuracy: LocationAccuracy.high,
     );
     print('Position obtained: $position');
     return position;

@@ -1,4 +1,4 @@
-class TAnimations {
+class CustomAnimations {
   //*on boarding animations
   static const String onBoarding1 =
       "assets/lottie/on_boarding_animations/doctor.json";

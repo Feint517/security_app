@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
           children: [
             //* header
             CustomPrimaryHeaderContainer(
-              height: THelperFunctions.screenHeight(),
+              height: CustomHelperFunctions.screenHeight(),
               child: Column(
                 children: [
                   CustomAppBar(
@@ -36,18 +36,17 @@ class ProfileScreen extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .headlineMedium!
-                          .apply(color: TColors.white),
+                          .apply(color: CustomColors.white),
                     ),
                   ),
-                  //const Gap(TSizes.spaceBtwSections),
 
                   //* user profile card
                   UserProfileTile(
                     onPressed: () => Get.to(() => const ProfileScreen()),
                   ),
-                  const Gap(TSizes.spaceBtwSections),
+                  const Gap(CustomSizes.spaceBtwSections),
                   Padding(
-                    padding: const EdgeInsets.all(TSizes.defaultSpace),
+                    padding: const EdgeInsets.all(CustomSizes.defaultSpace),
                     child: Column(
                       children: [
                         //* account settings
@@ -56,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                           textColor: Colors.white,
                           showActionButton: false,
                         ),
-                        const Gap(TSizes.spaceBtwItems),
+                        const Gap(CustomSizes.spaceBtwItems),
 
                         SettingsMenuTile(
                           icon: Iconsax.personalcard,
@@ -90,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                               Get.to(() => const ChangePasswordScreen()),
                         ),
 
-                        const Gap(TSizes.spaceBtwItems),
+                        const Gap(CustomSizes.spaceBtwItems),
 
                         //* Logout button
                         SizedBox(
@@ -135,21 +134,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Gap(TSizes.spaceBtwSections),
-
-                        // SizedBox(
-                        //   width: double.infinity,
-                        //   child: OutlinedButton(
-                        //     onPressed: () async {
-                        //       UserRepository.instance.fetchUserData();
-                        //     },
-                        //     child: const Text(
-                        //       'Test',
-                        //       style: TextStyle(color: Colors.white),
-                        //     ),
-                        //   ),
-                        // ),
-                        // const Gap(TSizes.spaceBtwItems),
+                        const Gap(CustomSizes.spaceBtwSections),
                       ],
                     ),
                   )

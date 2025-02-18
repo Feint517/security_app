@@ -12,12 +12,12 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
-      theme: TAppTheme.ligtTheme,
-      darkTheme: TAppTheme.darkTheme,
+      theme: CustomAppTheme.ligtTheme,
+      darkTheme: CustomAppTheme.darkTheme,
       //? when the app runs, it will automatically initiate all the methods in GeneralBindings
       initialBinding: GeneralBindings(),
       home: const Scaffold(
-        backgroundColor: TColors.primary,
+        backgroundColor: CustomColors.primary,
         body: Center(
           child: CircularProgressIndicator(color: Colors.white),
         ),

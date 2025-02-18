@@ -58,7 +58,7 @@ class ServerRepository extends GetxController {
         print('Server Response: ${jsonResponse['message']}');
         return null; //? ✅ No error, server is running
       } else {
-        return 'Unexpected response: ${response.statusCode}'; //? ❌ API error
+        return 'Unexpected response: ${response.statusCode}'; //? API error
       }
     } on TimeoutException {
       return 'Connection timeout: Server is not responding.';

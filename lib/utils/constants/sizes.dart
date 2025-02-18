@@ -1,4 +1,4 @@
-class TSizes {
+class CustomSizes {
 
   //? padding and margin sizes
   static const double xs = 4.0;

@@ -16,7 +16,7 @@ class UserProfileTile extends StatelessWidget {
     return ListTile(
       leading: const Icon(
         Icons.person,
-        color: TColors.secondary,
+        color: CustomColors.secondary,
         size: 40,
       ),
       title: Text(
@@ -24,12 +24,12 @@ class UserProfileTile extends StatelessWidget {
         style: Theme.of(context)
             .textTheme
             .headlineSmall!
-            .apply(color: TColors.white),
+            .apply(color: CustomColors.white),
       ),
       subtitle: Text(
         'ID: ${controller.user.value.userId}',
         style:
-            Theme.of(context).textTheme.bodyMedium!.apply(color: TColors.white),
+            Theme.of(context).textTheme.bodyMedium!.apply(color: CustomColors.white),
       ),
     );
   }

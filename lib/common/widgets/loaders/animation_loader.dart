@@ -32,26 +32,26 @@ class CustomAnimationLoader extends StatelessWidget {
             animation,
             width: MediaQuery.of(context).size.width * 0.8,
           ),
-          const Gap(TSizes.defaultSpace),
+          const Gap(CustomSizes.defaultSpace),
           Text(
             text,
             style: Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.center,
           ),
-          const Gap(TSizes.defaultSpace),
+          const Gap(CustomSizes.defaultSpace),
           showAction
               ? SizedBox(
                   width: 250,
                   child: OutlinedButton(
                     onPressed: onActionPressed,
                     style:
-                        OutlinedButton.styleFrom(backgroundColor: TColors.dark),
+                        OutlinedButton.styleFrom(backgroundColor: CustomColors.dark),
                     child: Text(
                       actionText!,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
-                          .apply(color: TColors.light),
+                          .apply(color: CustomColors.light),
                     ),
                   ),
                 )

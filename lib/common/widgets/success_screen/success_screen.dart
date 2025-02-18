@@ -12,8 +12,6 @@ class SuccessScreen extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.onPressed,
-    // required this.imageLight,
-    // required this.imageDark,
     required this.image,
   });
 
@@ -26,20 +24,14 @@ class SuccessScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: TSpacingStyle.paddingWithAppBarHeight * 2,
+          padding: CustomSpacingStyle.paddingWithAppBarHeight * 2,
           child: Column(
             children: [
               Lottie.asset(
                 image,
                 width: MediaQuery.of(context).size.width * 0.6,
               ),
-              // Image(
-              //   image: AssetImage(
-              //     dark ? imageDark : imageLight,
-              //   ),
-              //   width: THelperFunctions.screenWidth() * 0.6,
-              // ),
-              const Gap(TSizes.spaceBtwSections),
+              const Gap(CustomSizes.spaceBtwSections),
 
               //* title and subtitle
               Text(
@@ -47,20 +39,20 @@ class SuccessScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ),
-              const Gap(TSizes.spaceBtwItems),
+              const Gap(CustomSizes.spaceBtwItems),
 
               Text(
                 subtitle,
                 style: Theme.of(context).textTheme.labelMedium,
                 textAlign: TextAlign.center,
               ),
-              const Gap(TSizes.spaceBtwSections),
+              const Gap(CustomSizes.spaceBtwSections),
 
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: onPressed,
-                  child: const Text(TTexts.sayContinue),
+                  child: const Text(CustomTexts.sayContinue),
                 ),
               ),
             ],

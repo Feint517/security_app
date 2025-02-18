@@ -37,8 +37,6 @@ class ProjectsController extends GetxController {
     try {
       projectsList.value = await ProjectRepository.instance
           .fetchProjectsByUserId(userId: userId);
-      //print('projects = ${projectsList[0].startDate}');
-      //print('id = ${projects[0].projectId}');
     } catch (error) {
       print('Error fetching teams: $error');
     }

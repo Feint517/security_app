@@ -26,21 +26,21 @@ class VerifyPinsForm extends StatelessWidget {
             controller: controller.pin1,
             decoration: const InputDecoration(
               prefixIcon: Icon(Iconsax.direct_right),
-              labelText: TTexts.pin1,
+              labelText: CustomTexts.pin1,
             ),
             keyboardType: TextInputType.number,
           ),
-          const Gap(TSizes.spaceBtwInputFields),
+          const Gap(CustomSizes.spaceBtwInputFields),
 
           TextFormField(
             controller: controller.pin2,
             decoration: const InputDecoration(
               prefixIcon: Icon(Iconsax.direct_right),
-              labelText: TTexts.pin2,
+              labelText: CustomTexts.pin2,
             ),
             keyboardType: TextInputType.number,
           ),
-          const Gap(TSizes.spaceBtwInputFields),
+          const Gap(CustomSizes.spaceBtwInputFields),
 
           //* sign in button
           SizedBox(
@@ -51,7 +51,7 @@ class VerifyPinsForm extends StatelessWidget {
                 controller.pin1.text,
                 controller.pin2.text,
               ),
-              child: const Text(TTexts.signIn),
+              child: const Text(CustomTexts.signIn),
             ),
           ),
         ],

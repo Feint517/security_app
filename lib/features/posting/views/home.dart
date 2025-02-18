@@ -25,21 +25,21 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomPrimaryHeaderContainer(
-              height: THelperFunctions.screenHeight(),
+              height: CustomHelperFunctions.screenHeight(),
               child: Column(
                 children: [
                   const HomeAppBar(),
-                  const Gap(TSizes.spaceBtwSections / 2),
+                  const Gap(CustomSizes.spaceBtwSections / 2),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 10,
                     ),
                     child: SizedBox(
-                      width: THelperFunctions.screenWidth() * 0.9,
-                      height: THelperFunctions.screenHeight() * 0.8,
+                      width: CustomHelperFunctions.screenWidth() * 0.9,
+                      height: CustomHelperFunctions.screenHeight() * 0.8,
                       child: Column(
                         children: [
-                          const Gap(TSizes.spaceBtwSections / 2),
+                          const Gap(CustomSizes.spaceBtwSections / 2),
                           SizedBox(
                             width: double.infinity,
                             child: Text(
@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .headlineMedium!
-                                  .apply(color: TColors.white),
+                                  .apply(color: CustomColors.white),
                             ),
                           ),
                           Obx(
@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                               shrinkWrap: true,
                               itemCount: controller.projectsList.length,
                               separatorBuilder: (context, index) =>
-                                  const Gap(TSizes.spaceBtwSections / 2),
+                                  const Gap(CustomSizes.spaceBtwSections / 2),
                               itemBuilder: (context, index) {
                                 final project = controller.projectsList[index];
                                 return ProjectTile(

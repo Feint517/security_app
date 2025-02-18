@@ -22,9 +22,9 @@ class CustomLoaders {
           margin: const EdgeInsets.symmetric(horizontal: 30),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: THelperFunctions.isDarkMode(Get.context!)
-                ? TColors.darkGrey.withOpacity(0.9)
-                : TColors.grey.withOpacity(0.9),
+            color: CustomHelperFunctions.isDarkMode(Get.context!)
+                ? CustomColors.darkGrey.withOpacity(0.9)
+                : CustomColors.grey.withOpacity(0.9),
           ),
           child: Center(
             child: Text(
@@ -53,7 +53,7 @@ class CustomLoaders {
       snackPosition: SnackPosition.BOTTOM,
       duration: Duration(seconds: duration),
       margin: const EdgeInsets.all(10),
-      icon: const Icon(Iconsax.check, color: TColors.white),
+      icon: const Icon(Iconsax.check, color: CustomColors.white),
     );
   }
 
@@ -72,7 +72,7 @@ class CustomLoaders {
       snackPosition: SnackPosition.BOTTOM,
       duration: Duration(seconds: duration),
       margin: const EdgeInsets.all(10),
-      icon: const Icon(Iconsax.warning_2, color: TColors.white),
+      icon: const Icon(Iconsax.warning_2, color: CustomColors.white),
     );
   }
 
@@ -91,7 +91,7 @@ class CustomLoaders {
       snackPosition: SnackPosition.BOTTOM,
       duration: Duration(seconds: duration),
       margin: const EdgeInsets.all(10),
-      icon: const Icon(Iconsax.warning_2, color: TColors.white),
+      icon: const Icon(Iconsax.warning_2, color: CustomColors.white),
     );
   }
 }

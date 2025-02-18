@@ -1,4 +1,4 @@
-class TImages {
+class CustomImages {
   //* logos
   static const String appLogo = "assets/logos/appLogo.png";
   static const String googleLogo = "assets/logos/google.png";

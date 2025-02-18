@@ -13,7 +13,7 @@ class CustomCircularImage extends StatelessWidget {
     this.backgroundColor,
     required this.image,
     this.fit = BoxFit.cover,
-    this.padding = TSizes.sm,
+    this.padding = CustomSizes.sm,
     this.isNetworkImage = false,
   });
 
@@ -31,11 +31,6 @@ class CustomCircularImage extends StatelessWidget {
       height: height,
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
-        //? if background color is null, then switch it to light and dark mode color design
-        // color: backgroundColor ??
-        //     (THelperFunctions.isDarkMode(context)
-        //         ? TColors.black
-        //         : TColors.white),
         borderRadius: BorderRadius.circular(100),
       ),
       child: ClipRRect(

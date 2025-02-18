@@ -27,7 +27,7 @@ class LoginController extends GetxController {
       //* start loading
       CustomFullscreenLoader.openLoadingDialog(
         'Please wait...',
-        TAnimations.check,
+        CustomAnimations.check,
       );
 
       //* check internet connection
@@ -36,18 +36,6 @@ class LoginController extends GetxController {
         CustomFullscreenLoader.stopLoading();
         return;
       }
-
-      //* check if server is running
-      // final isRunning = await ServerRepository.instance.isServerRunning();
-      // print('isRunning = $isRunning');
-      // if (!isRunning) {
-      //   CustomLoaders.errorSnackBar(
-      //     title: 'Enable location services!',
-      //     message: 'Your location is required to login.',
-      //   );
-      //   CustomFullscreenLoader.stopLoading();
-      //   return;
-      // }
 
       final errorMessage = await ServerRepository.instance.isServerRunning2();
       if (errorMessage != null) {
@@ -84,8 +72,6 @@ class LoginController extends GetxController {
         latitude: position.latitude.toString(),
         longitude: position.longitude.toString(),
       );
-      //final status1 = response1.$1;
-      //final json1 = response1.$2;
 
       if (response1.$1 != 200) {
         final error = response1.$2['error'];
@@ -100,8 +86,6 @@ class LoginController extends GetxController {
       //* verify user credentials
       final response2 = await AuthenticationRepository.instance
           .verifyCredentials(email.text.trim(), password.text.trim());
-      //final status2 = response2.$1;
-      //final json2 = response2.$2;
 
       if (response2.$1 != 200) {
         final error = response2.$2['error'];

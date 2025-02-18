@@ -36,7 +36,7 @@ class SignupController extends GetxController {
       //* start loading
       CustomFullscreenLoader.openLoadingDialog(
         'We are processing your information...',
-        TAnimations.check,
+        CustomAnimations.check,
       );
 
       //* check internet connection
@@ -89,13 +89,13 @@ class SignupController extends GetxController {
       final response =
           await AuthenticationRepository.instance.registerWithEmailAndPassword(
         firstName:
-            THelperFunctions.capitalizeFirstLetter(firstName.text.trim()),
-        lastName: THelperFunctions.capitalizeFirstLetter(lastName.text.trim()),
-        username: THelperFunctions.capitalizeFirstLetter(userName.text.trim()),
-        activity: THelperFunctions.capitalizeFirstLetter(activity.text.trim()),
+            CustomHelperFunctions.capitalizeFirstLetter(firstName.text.trim()),
+        lastName: CustomHelperFunctions.capitalizeFirstLetter(lastName.text.trim()),
+        username: CustomHelperFunctions.capitalizeFirstLetter(userName.text.trim()),
+        activity: CustomHelperFunctions.capitalizeFirstLetter(activity.text.trim()),
         email: email.text.trim().toLowerCase(),
         phoneNumber:
-            THelperFunctions.formatPhoneNumber(phoneNumber.text.trim()),
+            CustomHelperFunctions.formatPhoneNumber(phoneNumber.text.trim()),
         password: password.text.trim(),
       );
 

@@ -22,7 +22,7 @@ class UpdatePasswordController extends GetxController {
       //* start loading
       CustomFullscreenLoader.openLoadingDialog(
         'We are updating your information...',
-        TAnimations.check,
+        CustomAnimations.check,
       );
 
       //* check internet connection
@@ -37,17 +37,6 @@ class UpdatePasswordController extends GetxController {
         CustomFullscreenLoader.stopLoading();
         return;
       }
-
-      // try {
-      //   await UserRepository.instance.updateUserPassword(
-      //     currentPassword: oldPassword.text,
-      //     newPassword: newPassword.text,
-      //   );
-      // } catch (e) {
-      //   CustomFullscreenLoader.stopLoading();
-      //   CustomLoaders.errorSnackBar(title: 'Oh snap!', message: e.toString());
-      //   return;
-      // }
 
       final response = await UserRepository.instance.updateUserPassword(
         currentPassword: oldPassword.text,

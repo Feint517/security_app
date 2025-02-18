@@ -25,7 +25,7 @@ class ChangePasswordScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(TSizes.defaultSpace),
+          padding: const EdgeInsets.all(CustomSizes.defaultSpace),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -34,7 +34,7 @@ class ChangePasswordScreen extends StatelessWidget {
                 'Enter your old and new password to change it.',
                 style: Theme.of(context).textTheme.labelMedium,
               ),
-              const Gap(TSizes.spaceBtwSections),
+              const Gap(CustomSizes.spaceBtwSections),
 
               //* text field and button
               Form(
@@ -44,28 +44,28 @@ class ChangePasswordScreen extends StatelessWidget {
                     TextFormField(
                       controller: controller.oldPassword,
                       validator: (value) =>
-                          TValidator.validateEmptyText('Password', value),
+                          CustomValidator.validateEmptyText('Password', value),
                       expands: false,
                       decoration: const InputDecoration(
-                        labelText: TTexts.currentPassword,
+                        labelText: CustomTexts.currentPassword,
                         prefixIcon: Icon(Iconsax.password_check),
                       ),
                     ),
-                    const Gap(TSizes.spaceBtwInputFields),
+                    const Gap(CustomSizes.spaceBtwInputFields),
                     TextFormField(
                       controller: controller.newPassword,
                       validator: (value) =>
-                          TValidator.validateEmptyText('Password', value),
+                          CustomValidator.validateEmptyText('Password', value),
                       expands: false,
                       decoration: const InputDecoration(
-                        labelText: TTexts.newPassword,
+                        labelText: CustomTexts.newPassword,
                         prefixIcon: Icon(Iconsax.password_check),
                       ),
                     ),
                   ],
                 ),
               ),
-              const Gap(TSizes.spaceBtwSections),
+              const Gap(CustomSizes.spaceBtwSections),
 
               //* save button
               SizedBox(

@@ -9,8 +9,8 @@ import 'custom_themes/outlined_button_theme.dart';
 import 'custom_themes/text_field_theme.dart';
 import 'custom_themes/text_theme.dart';
 
-class TAppTheme {
-  TAppTheme._(); //?private constructor, to make sure that it's not used again and again
+class CustomAppTheme {
+  CustomAppTheme._();
 
   static ThemeData ligtTheme = ThemeData(
     useMaterial3: true,
@@ -18,14 +18,14 @@ class TAppTheme {
     brightness: Brightness.light,
     primaryColor: Colors.blue,
     scaffoldBackgroundColor: Colors.white,
-    appBarTheme: TAppBarTheme.lightAppBarTheme,
-    bottomSheetTheme: TBottomSheetTheme.lightBottomSheetTheme,
-    checkboxTheme: TCheckboxTheme.lightCheckboxTheme,
-    chipTheme: TChipTheme.lightChipTheme,
-    elevatedButtonTheme: TElevatedButtonTheme.lightElevatedButtonTheme,
-    outlinedButtonTheme: TOutlinedButtonTheme.lightOutlinedButtonTheme,
-    inputDecorationTheme: TTextFormFieldTheme.lightInputDecorationTheme,
-    textTheme: TTextTheme.lightTextTheme,
+    appBarTheme: CustomAppBarTheme.lightAppBarTheme,
+    bottomSheetTheme: CustomBottomSheetTheme.lightBottomSheetTheme,
+    checkboxTheme: CustomCheckboxTheme.lightCheckboxTheme,
+    chipTheme: CustomChipTheme.lightChipTheme,
+    elevatedButtonTheme: CustomElevatedButtonTheme.lightElevatedButtonTheme,
+    outlinedButtonTheme: CustomOutlinedButtonTheme.lightOutlinedButtonTheme,
+    inputDecorationTheme: CustomTextFormFieldTheme.lightInputDecorationTheme,
+    textTheme: CustomTextTheme.lightTextTheme,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -34,13 +34,13 @@ class TAppTheme {
     brightness: Brightness.dark,
     primaryColor: Colors.blue,
     scaffoldBackgroundColor: Colors.black,
-    appBarTheme: TAppBarTheme.darkAppBarTheme,
-    bottomSheetTheme: TBottomSheetTheme.darkBottomSheetTheme,
-    checkboxTheme: TCheckboxTheme.darkCheckboxTheme,
-    chipTheme: TChipTheme.darkChipTheme,
-    elevatedButtonTheme: TElevatedButtonTheme.darkElevatedButtonTheme,
-    outlinedButtonTheme: TOutlinedButtonTheme.darkOutlinedButtonTheme,
-    inputDecorationTheme: TTextFormFieldTheme.darkInputDecorationTheme,
-    textTheme: TTextTheme.darkTextTheme,
+    appBarTheme: CustomAppBarTheme.darkAppBarTheme,
+    bottomSheetTheme: CustomBottomSheetTheme.darkBottomSheetTheme,
+    checkboxTheme: CustomCheckboxTheme.darkCheckboxTheme,
+    chipTheme: CustomChipTheme.darkChipTheme,
+    elevatedButtonTheme: CustomElevatedButtonTheme.darkElevatedButtonTheme,
+    outlinedButtonTheme: CustomOutlinedButtonTheme.darkOutlinedButtonTheme,
+    inputDecorationTheme: CustomTextFormFieldTheme.darkInputDecorationTheme,
+    textTheme: CustomTextTheme.darkTextTheme,
   );
 }

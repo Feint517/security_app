@@ -34,7 +34,7 @@ class UserController extends GetxController {
 
   void deletaAccountWarningPopup() {
     Get.defaultDialog(
-      contentPadding: const EdgeInsets.all(TSizes.md),
+      contentPadding: const EdgeInsets.all(CustomSizes.md),
       title: 'Logout',
       middleText: 'Are you sure you want to logout of your account?',
       confirm: ElevatedButton(
@@ -47,7 +47,7 @@ class UserController extends GetxController {
           side: const BorderSide(color: Colors.red),
         ),
         child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
+          padding: EdgeInsets.symmetric(horizontal: CustomSizes.lg),
           child: Text('Yes'),
         ),
       ),

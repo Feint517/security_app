@@ -25,7 +25,6 @@ class ProjectRepository extends GetxController {
 
         print('Fetching projects.....');
         print('Numbers of projects found = ${projects.length}');
-        //print('jsonResponse = $jsonResponse');
         return projects;
       } else {
         throw Exception('Failed to fetch teams: ${response.body}');
@@ -120,7 +119,6 @@ class ProjectRepository extends GetxController {
       if (response.statusCode == 200) {
         return (response.statusCode, json as dynamic);
       } else {
-        //throw Exception('Failed to fetch user data: ${response.body}');
         print('Failed with status: ${response.statusCode}');
         print('Response body: ${response.body}');
         return (response.statusCode, json as dynamic);

@@ -20,12 +20,12 @@ class TeamSelectScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(TSizes.defaultSpace),
+          padding: const EdgeInsets.all(CustomSizes.defaultSpace),
           child: Column(
             children: [
               SizedBox(
-                width: THelperFunctions.screenWidth(),
-                height: THelperFunctions.screenHeight() * 0.8,
+                width: CustomHelperFunctions.screenWidth(),
+                height: CustomHelperFunctions.screenHeight() * 0.8,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +41,7 @@ class TeamSelectScreen extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: controller.teams.length,
                         separatorBuilder: (context, index) =>
-                            const Gap(TSizes.spaceBtwSections / 2),
+                            const Gap(CustomSizes.spaceBtwSections / 2),
                         itemBuilder: (context, index) {
                           final team = controller.teams[index];
                           return TeamTile(
@@ -56,7 +56,7 @@ class TeamSelectScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: THelperFunctions.screenWidth() * 0.5,
+                width: CustomHelperFunctions.screenWidth() * 0.5,
                 child: ElevatedButton(
                   onPressed: () async {
                     final teamsList = controller.getSelectedTeamIds();

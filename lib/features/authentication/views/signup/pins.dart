@@ -18,12 +18,12 @@ class PinsScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(TSizes.defaultSpace),
+          padding: const EdgeInsets.all(CustomSizes.defaultSpace),
           child: Column(
             children: [
               SizedBox(
-                width: THelperFunctions.screenWidth(),
-                height: THelperFunctions.screenHeight() * 0.8,
+                width: CustomHelperFunctions.screenWidth(),
+                height: CustomHelperFunctions.screenHeight() * 0.8,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -32,17 +32,17 @@ class PinsScreen extends StatelessWidget {
                       'Your Pin codes are:',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
-                    const Gap(TSizes.spaceBtwSections),
+                    const Gap(CustomSizes.spaceBtwSections),
                     Text(
                       pin1,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
-                    const Gap(TSizes.spaceBtwSections),
+                    const Gap(CustomSizes.spaceBtwSections),
                     Text(
                       pin2,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
-                    const Gap(TSizes.spaceBtwSections),
+                    const Gap(CustomSizes.spaceBtwSections),
                     Text(
                       'Save them somewhere safe!',
                       style: Theme.of(context)
@@ -54,7 +54,7 @@ class PinsScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: THelperFunctions.screenWidth() * 0.5,
+                width: CustomHelperFunctions.screenWidth() * 0.5,
                 child: ElevatedButton(
                   onPressed: () async {
                     controller.searchForTeams();
